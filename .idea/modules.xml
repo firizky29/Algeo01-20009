@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Algeo01-20009.iml" filepath="$PROJECT_DIR$/Algeo01-20009.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Algeo01-20009.iml" filepath="$PROJECT_DIR$/.idea/Algeo01-20009.iml" />
     </modules>
   </component>
 </project>
