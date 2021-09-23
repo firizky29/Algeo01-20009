@@ -8,116 +8,44 @@ import java.util.Scanner;
 
 // disini tulis adt matriksnya ya guys
 public class Matriks {
-    public static int[][] bacaMatriks1(String filePath) throws FileNotFoundException {
-        int baris,kolom;
-        int i,j;
+    public Double[][] elmt;
+    protected int nRow, nCol;
 
-        Scanner in = new Scanner(new File(filePath));
-        baris = in.nextInt();kolom = in.nextInt();
-        int[][] m = new int[baris][kolom];
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                m[i][j] = in.nextInt();
-            }
-        }
-        in.close();
-        return m;
+    public Matriks(int nRow, int nCol) {
+            elmt = new Double[nRow][nCol];
+            this.nRow = nRow;
+            this.nCol = nCol;
     }
-
-    public static int[][] bacaMatriks2(){
-        int baris,kolom;
-        int i,j;
-
-        Scanner in = new Scanner(System.in);
-        baris = in.nextInt();kolom = in.nextInt();
-        int[][] m = new int[baris][kolom];
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                m[i][j] = in.nextInt();
-            }
-        }
-        in.close();
-        return m;
-    }
-    public static void tulisMatriks1(int[][] m, String filePath) {
-        // matriks tidak kosong
-        int baris=m.length, kolom=m[0].length;
-        int i,j;
-
-        File file = new File(filePath);
-        try{
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-            Formatter out = new Formatter(file.getAbsoluteFile());
-            for(i=0;i<baris;i++) {
-                for(j=0;j<kolom;j++) {
-                    if(j==kolom-1) {
-                        out.format("%d%n", m[i][j]);
-                    } else {
-                        out.format("%d ", m[i][j]);
-                    }
-                }
-            }
-            out.close();
-        } catch(IOException ex) {
-            System.exit(1);
-        }
-    }
-
-    public static void tulisMatriks2(int[][] m){
-        // matriks tidak kosong
-        int baris=m.length, kolom=m[0].length;
-        int i,j;
-
-        Formatter out = new Formatter(System.out);
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                if(j==kolom-1) {
-                    out.format("%d%n", m[i][j]);
-                } else {
-                    out.format("%d ", m[i][j]);
-                }
-            }
-        }
-        out.close();
-    }
-
     // versi double
-    public static Double[][] bacaMatriksD1(String filePath) throws FileNotFoundException {
-        int baris,kolom;
+    public Matriks(String filePath) throws FileNotFoundException {
         int i,j;
 
         Scanner in = new Scanner(new File(filePath));
-        baris = in.nextInt();kolom = in.nextInt();
-        Double[][] m = new Double[baris][kolom];
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                m[i][j] = in.nextDouble();
+        nRow = in.nextInt();nCol = in.nextInt();
+        elmt = new Double[nRow][nCol];
+        for(i=0;i<nRow;i++) {
+            for(j=0;j<nCol;j++) {
+                elmt[i][j] = in.nextDouble();
             }
         }
         in.close();
-        return m;
     }
 
-    public static Double[][] bacaMatriksD2(){
-        int baris,kolom;
+    public Matriks(){
         int i,j;
 
         Scanner in = new Scanner(System.in);
-        baris = in.nextInt();kolom = in.nextInt();
-        Double[][] m = new Double[baris][kolom];
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                m[i][j] = in.nextDouble();
+        nRow = in.nextInt();nCol = in.nextInt();
+        elmt = new Double[nRow][nCol];
+        for(i=0;i<nRow;i++) {
+            for(j=0;j<nCol;j++) {
+                elmt[i][j] = in.nextDouble();
             }
         }
         in.close();
-        return m;
     }
-    public static void tulisMatriks1(Double[][] m, String filePath) {
+    public void tulisMatriks1(String filePath) {
         // matriks tidak kosong
-        int baris=m.length, kolom=m[0].length;
         int i,j;
 
         File file = new File(filePath);
@@ -126,12 +54,12 @@ public class Matriks {
                 file.createNewFile();
             }
             Formatter out = new Formatter(file.getAbsoluteFile());
-            for(i=0;i<baris;i++) {
-                for(j=0;j<kolom;j++) {
-                    if(j==kolom-1) {
-                        out.format("%f%n", m[i][j]);
+            for(i=0;i<nRow;i++) {
+                for(j=0;j<nCol;j++) {
+                    if(j==nCol-1) {
+                        out.format("%f%n", elmt[i][j]);
                     } else {
-                        out.format("%f ", m[i][j]);
+                        out.format("%f ", elmt[i][j]);
                     }
                 }
             }
@@ -141,18 +69,17 @@ public class Matriks {
         }
     }
 
-    public static void tulisMatriks2(Double[][] m){
+    public void tulisMatriks2(){
         // matriks tidak kosong
-        int baris=m.length, kolom=m[0].length;
         int i,j;
 
         Formatter out = new Formatter(System.out);
-        for(i=0;i<baris;i++) {
-            for(j=0;j<kolom;j++) {
-                if(j==kolom-1) {
-                    out.format("%f%n", m[i][j]);
+        for(i=0;i<nRow;i++) {
+            for(j=0;j<nCol;j++) {
+                if(j==nCol-1) {
+                    out.format("%f%n", elmt[i][j]);
                 } else {
-                    out.format("%f ", m[i][j]);
+                    out.format("%f ", elmt[i][j]);
                 }
             }
         }
