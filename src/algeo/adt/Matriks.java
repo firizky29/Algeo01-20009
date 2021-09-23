@@ -1,5 +1,7 @@
 package algeo.adt;
 
+import algeo.lib.DeterminantOBE;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -93,5 +95,30 @@ public class Matriks {
             }
         }
         out.close();
+    }
+
+    //operator primitif
+    private final static Double epsilon = 1e-9;
+    public static boolean Eq(double A, double B){
+        return Math.abs(A-B)<epsilon;
+    }
+    public void swaprow(int i, int j){
+        Double tmp;
+        int k;
+        for(k=0; k<nCol; k++){
+            tmp = elmt[i][k];
+            elmt[i][k] = elmt[j][k];
+            elmt[j][k] = tmp;
+        }
+    }
+    public Double getDetOBE(){
+        DeterminantOBE det = new DeterminantOBE();
+        int i;
+        double res = 1.0;
+        det.process();
+        for(i=0; i<this.nRow(); i++){
+            res *= det.M.elmt[i][i];
+        }
+        return  res;
     }
 }
