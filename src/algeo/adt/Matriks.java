@@ -44,6 +44,15 @@ public class Matriks {
         }
         in.close();
     }
+
+    public int nCol() {
+        return nCol;
+    }
+
+    public int nRow() {
+        return nRow;
+    }
+
     public void tulisMatriks1(String filePath) {
         // matriks tidak kosong
         int i,j;
