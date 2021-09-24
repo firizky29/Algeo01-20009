@@ -3,6 +3,7 @@ package algeo.driver;
 import algeo.adt.Matriks;
 import algeo.lib.GaussSPL;
 import algeo.lib.JordanSPL;
+import algeo.lib.OBE;
 
 import java.io.FileNotFoundException;
 
@@ -25,8 +26,11 @@ public class Main {
 //        JordanSPL n = new JordanSPL();
 //        n.process();
 //        n.M.tulisMatriks2();
-
-//        Matriks m = new Matriks();
-//        System.out.println(m.getDetOBE());
+        // Misalkan punya matriks m (dibuat pas awal banget)
+        Matriks m = new Matriks();
+        // buat nge-Jordan atau nge-Gauss berarti
+        OBE childm = new OBE(m);
+        childm.GaussProcess();
+        childm.M.tulisMatriks2();
     }
 }

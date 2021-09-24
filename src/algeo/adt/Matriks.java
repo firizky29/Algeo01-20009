@@ -5,6 +5,7 @@ import algeo.lib.DeterminantOBE;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Scanner;
 
@@ -12,6 +13,12 @@ import java.util.Scanner;
 public class Matriks {
     public Double[][] elmt;
     protected int nRow, nCol;
+
+    public Matriks(Matriks a){
+        this.elmt = Arrays.stream(a.elmt).map(Double[]::clone).toArray(Double[][]::new);
+        this.nRow = a.nRow;
+        this.nCol = a.nCol;
+    }
 
     public Matriks(int nRow, int nCol) {
             elmt = new Double[nRow][nCol];
@@ -111,14 +118,14 @@ public class Matriks {
             elmt[j][k] = tmp;
         }
     }
-    public Double getDetOBE(){
-        DeterminantOBE det = new DeterminantOBE();
-        int i;
-        double res = 1.0;
-        det.process();
-        for(i=0; i<this.nRow(); i++){
-            res *= det.M.elmt[i][i];
-        }
-        return  res;
-    }
+//    public Double getDetOBE(){
+//        DeterminantOBE det = new DeterminantOBE();
+//        int i;
+//        double res = 1.0;
+//        det.process();
+//        for(i=0; i<this.nRow(); i++){
+//            res *= det.M.elmt[i][i];
+//        }
+//        return  res;
+//    }
 }
