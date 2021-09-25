@@ -6,12 +6,12 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 // disini diisi pemrosesan matriksnya (semacam bikin implementasi .h di c)
-public class CoefficientMatrix extends Matriks {
+public class AugmentedMatrix extends Matriks {
     protected Double[] constant;
     public Double[][] coefficient;
     protected int coefRow, coefCol;
     private int[] zeros;
-    public CoefficientMatrix(int nRow, int nCol){
+    public AugmentedMatrix(int nRow, int nCol){
         super(nRow, nCol);
         this.constant = new Double[nRow];
         this.coefficient = new Double[nRow][nCol-1];
@@ -19,7 +19,7 @@ public class CoefficientMatrix extends Matriks {
         this.coefCol = nCol-1;
         this.zeros = new int[nRow];
     }
-    public CoefficientMatrix(String filePath) throws FileNotFoundException{
+    public AugmentedMatrix(String filePath) throws FileNotFoundException{
         super(filePath);
         this.constant = new Double[nRow];
         this.coefficient = new Double[nRow][nCol-1];
@@ -37,7 +37,7 @@ public class CoefficientMatrix extends Matriks {
         coefCol = this.nCol()-1;
 
     }
-    public CoefficientMatrix(){
+    public AugmentedMatrix(){
         super();
         this.constant = new Double[nRow];
         this.coefficient = new Double[nRow][nCol-1];

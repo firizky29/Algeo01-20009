@@ -101,7 +101,7 @@ public class Matriks {
                 }
             }
         }
-        out.close();
+        //out.close();
     }
 
     //operator primitif

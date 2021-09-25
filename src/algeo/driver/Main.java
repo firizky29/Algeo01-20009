@@ -1,11 +1,9 @@
 package algeo.driver;
 // disini isi input/output (semacam drivernya mungkin?) matriksnya (determinan dkk, kalau mau bikin class lgi sabi)
 import algeo.adt.Matriks;
-import algeo.lib.GaussSPL;
-import algeo.lib.JordanSPL;
 import algeo.lib.OBE;
 
-import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,10 +25,13 @@ public class Main {
 //        n.process();
 //        n.M.tulisMatriks2();
         // Misalkan punya matriks m (dibuat pas awal banget)
-        Matriks m = new Matriks();
+        //Matriks m = new Matriks();
         // buat nge-Jordan atau nge-Gauss berarti
+        Matriks m = new Matriks();
         OBE childm = new OBE(m);
-        childm.GaussProcess();
-        childm.M.tulisMatriks2();
+        ((OBE) childm).JordanProcess();
+        ((OBE) childm).M.tulisMatriks2();
+        System.out.println(Arrays.toString(childm.getSolution()));
+        //System.out.println(m.Eq(-0.0, 0.0));
     }
 }
