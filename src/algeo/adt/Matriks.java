@@ -1,7 +1,5 @@
 package algeo.adt;
 
-import algeo.lib.DeterminantOBE;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -6,9 +6,9 @@ import java.util.*;
 
 
 
-public class OBE extends Matriks{
+public class SPLGauss extends Matriks{
     public Matriks M;
-    public OBE(Matriks m){
+    public SPLGauss(Matriks m){
         super(m);
         // Handle kasus kalau banyak variabel != banyak persamaan
         if(nRow!=nCol-1){
@@ -27,6 +27,7 @@ public class OBE extends Matriks{
         }
     }
 
+
     int firstNonZeroOccurence(int startIdx, int pivot){
         int i = startIdx;
         for(;i<M.nRow();i++){
@@ -36,6 +37,7 @@ public class OBE extends Matriks{
         }
         return startIdx;
     }
+
     public void GaussProcess(){
         int i, j, k, p;
         i = k = 0;
@@ -102,7 +104,7 @@ public class OBE extends Matriks{
                 Expression[i][j] = M.elmt[i][j];
                 if(!Eq(M.elmt[i][j], 0.0)&&curCheckInf){
                     curCheckInf = false;
-                    if(j==M.nCol()){
+                    if(j==M.nCol()-1){
                         NaN = true;
                     }
                 }
@@ -228,4 +230,6 @@ public class OBE extends Matriks{
         }
         return solution;
     }
+
+
 }
