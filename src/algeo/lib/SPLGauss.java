@@ -117,7 +117,7 @@ public class SPLGauss extends Matriks{
         }
     }
     public String[] getSolution(){
-        String[] solution = new String[M.nCol()-1];
+        String[] solution = new String[nCol-1];
         Double[][] Expression = new Double[M.nRow()][M.nCol()];
         boolean inf = false;
         boolean NaN = false;
@@ -167,22 +167,9 @@ public class SPLGauss extends Matriks{
                     idx.remove(0);
                 }
             }
-//            Formatter out = new Formatter(System.out);
-//            for(int i=0;i<M.nRow();i++) {
-//                for(int j=0;j<M.nCol();j++) {
-//                    if(j==M.nCol()-1) {
-//                        out.format("%f%n", Expression[i][j]);
-//                    } else {
-//                        out.format("%f ", Expression[i][j]);
-//                    }
-//                }
-//            }
             for(int j=M.nRow()-1; j>=0; j--){
                 if(!allzeros[j]){
                     for(int i=idxFirst[j]+1; i<M.nCol()-1; i++){
-//                        if(i==M.nCol()-1){
-//                            Expression[j][i]
-//                        }
                         if(!Eq(M.elmt[j][i], 0.0)) {
                             if (var[i]) {
                                 for (int k = idxFirst[i]; k < M.nCol(); k++) {
@@ -196,14 +183,14 @@ public class SPLGauss extends Matriks{
                 }
             }
 
-            for(int i=0; i<M.nRow(); i++){
+            for(int i=0; i<nCol-1; i++){
                 solution[i] = "";
                 if(allzeros[i]){
                     solution[i] = "x" + (i+1) ;
                 }
                 else{
-                    boolean firstCome = true;
                     for(int j=idxFirst[i]+1; j<M.nCol(); j++){
+                        boolean firstCome = (solution[i]=="");
                         if(!Eq(Expression[i][j], 0.0)&&j!=M.nCol()-1){
                             if(Eq(Expression[i][j], 1.0)){
                                 if(firstCome) solution[i] += "x" + (j+1);
@@ -236,7 +223,6 @@ public class SPLGauss extends Matriks{
                                 else solution[i] += " + " + Double.toString(Expression[i][j]).substring(0);
                             }
                         }
-                        firstCome = false;
                     }
                 }
             }
