@@ -1,9 +1,7 @@
 package algeo.driver;
 // disini isi input/output (semacam drivernya mungkin?) matriksnya (determinan dkk, kalau mau bikin class lgi sabi)
 import algeo.adt.Matriks;
-import algeo.lib.DeterminantOBE;
-import algeo.lib.InversOBE;
-import algeo.lib.SPLGauss;
+import algeo.lib.*;
 
 import java.util.Arrays;
 
@@ -38,5 +36,10 @@ public class Main {
         childm.M.tulisMatriks2();
         System.out.println(Arrays.toString(childm.getSolution()));
         //System.out.println(m.Eq(-0.0, 0.0));
+        SPLCramer mCramer = new SPLCramer(m);
+        System.out.println(Arrays.toString(mCramer.getSolutionString()));
+        Matriks points = new Matriks();
+        interpolasiPolinom polinom1 = new interpolasiPolinom(points);
+        System.out.println((polinom1.getHampiran(0.2))+" "+((polinom1.getHampiran(0.3))));
     }
 }

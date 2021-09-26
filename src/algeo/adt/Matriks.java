@@ -49,7 +49,6 @@ public class Matriks {
                 elmt[i][j] = in.nextDouble();
             }
         }
-        in.close();
     }
 
     public int nCol() {
@@ -99,7 +98,7 @@ public class Matriks {
                 }
             }
         }
-        //out.close();
+//        out.close();
     }
 
     //operator primitif

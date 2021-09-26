@@ -54,6 +54,23 @@ public class AugmentedMatrix extends Matriks {
         coefRow = this.nRow();
         coefCol = this.nCol()-1;
     }
+    public AugmentedMatrix(Matriks m) {
+        super(m);
+        this.constant = new Double[nRow];
+        this.coefficient = new Double[nRow][nCol-1];
+        zeros = new int[nRow];
+        int i,j;
+        for(i=0; i<nRow; i++){
+            for(j=0; j<nCol-1; j++){
+                coefficient[i][j] = this.elmt[i][j];
+            }
+        }
+        for(i=0; i<nRow; i++){
+            constant[i] = this.elmt[i][nCol-1];
+        }
+        coefRow = nRow;
+        coefCol = nCol-1;
+    }
     // read-only attributes
     public int getCoefCol() {
         return coefCol;
