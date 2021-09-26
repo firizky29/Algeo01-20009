@@ -3,6 +3,9 @@ package algeo.driver;
 import algeo.adt.Matriks;
 import algeo.lib.DeterminantOBE;
 import algeo.lib.InversOBE;
+import algeo.lib.SPLGauss;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,10 +30,13 @@ public class Main {
         //Matriks m = new Matriks();
         // buat nge-Jordan atau nge-Gauss berarti
         Matriks m = new Matriks();
-        InversOBE childm = new InversOBE(m);
+        SPLGauss childm = new SPLGauss(m);
 //        DeterminantOBE childm = new DeterminantOBE(m);
 //        System.out.println(childm.Determinant());
-        childm.getInvers().tulisMatriks2();
+        //childm.M.tulisMatriks2();
+        childm.JordanProcess();
+        childm.M.tulisMatriks2();
+        System.out.println(Arrays.toString(childm.getSolution()));
         //System.out.println(m.Eq(-0.0, 0.0));
     }
 }

@@ -12,16 +12,39 @@ public class SPLGauss extends Matriks{
         super(m);
         // Handle kasus kalau banyak variabel != banyak persamaan
         if(nRow!=nCol-1){
-            M = new Matriks(nCol-1, nCol);
+            if(nRow>nCol-1){
+                M = new Matriks(nRow, nRow+1);
+            }
+            else{
+                M = new Matriks(nCol-1, nCol);
+            }
         }
         else{
             M = new Matriks(nRow, nCol);
         }
-        for(int i=0; i<nCol-1; i++){
-            for(int j=0; j<nCol; j++){
-                if(i<nRow) M.elmt[i][j] = m.elmt[i][j];
+        for(int i=0; i<M.nRow(); i++){
+            for(int j=0; j<M.nCol(); j++){
+                if(nCol-1==nRow) M.elmt[i][j] = m.elmt[i][j];
                 else{
-                    M.elmt[i][j] = 0.0;
+                    if(nCol-1>nRow){
+                        if(i>=nRow){
+                            M.elmt[i][j] = 0.0;
+                        }
+                        else{
+                            M.elmt[i][j] = m.elmt[i][j];
+                        }
+                    }
+                    else{
+                        if(j>=nCol-1&&j!=M.nCol()-1){
+                            M.elmt[i][j] = 0.0;
+                        }
+                        else if(j!=M.nCol()-1){
+                            M.elmt[i][j] = m.elmt[i][j];
+                        }
+                        else{
+                            M.elmt[i][j] = m.elmt[i][nCol-1];
+                        }
+                    }
                 }
             }
         }
@@ -144,22 +167,29 @@ public class SPLGauss extends Matriks{
                     idx.remove(0);
                 }
             }
-
+//            Formatter out = new Formatter(System.out);
+//            for(int i=0;i<M.nRow();i++) {
+//                for(int j=0;j<M.nCol();j++) {
+//                    if(j==M.nCol()-1) {
+//                        out.format("%f%n", Expression[i][j]);
+//                    } else {
+//                        out.format("%f ", Expression[i][j]);
+//                    }
+//                }
+//            }
             for(int j=M.nRow()-1; j>=0; j--){
                 if(!allzeros[j]){
-                    for(int i=idxFirst[j]+1; i<M.nCol(); i++){
-                        if(i==M.nCol()-1){
-                            Expression[j][i] = M.elmt[j][i];
-                        }
-                        else{
-                            if(!Eq(M.elmt[j][i], 0.0)) {
-                                if (var[i]) {
-                                    for (int k = idxFirst[i]; k < M.nCol() - 1; k++) {
-                                        Expression[j][k] += -1.0 * M.elmt[j][i] * Expression[i][k];
-                                    }
-                                } else {
-                                    Expression[j][i] = -1.0*M.elmt[j][i];
+                    for(int i=idxFirst[j]+1; i<M.nCol()-1; i++){
+//                        if(i==M.nCol()-1){
+//                            Expression[j][i]
+//                        }
+                        if(!Eq(M.elmt[j][i], 0.0)) {
+                            if (var[i]) {
+                                for (int k = idxFirst[i]; k < M.nCol(); k++) {
+                                    Expression[j][k] += -1.0 * M.elmt[j][i] * Expression[i][k];
                                 }
+                            } else {
+                                Expression[j][i] = -1.0*M.elmt[j][i];
                             }
                         }
                     }
