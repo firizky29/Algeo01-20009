@@ -11,21 +11,29 @@ public class InversOBE extends SPLGauss{
         res = new Matriks(nRow, nCol);
         if(nRow!=nCol){
             System.out.println("Balikan Tidak Terdefinisi, Jumlah baris dan kolom harus sama");
+            M = null;
         }
         else {
             M = new Matriks(nRow, 2*nCol);
-            for(int i=0; i<nRow; i++){
-                for(int j=0; j<2*nCol; j++){
-                    if(j<nCol) {
-                        M.elmt[i][j] = m.elmt[i][j];
-                        res.elmt[i][j] = m.elmt[i][j];
-                    }
-                    else{
-                        if(j-(nCol)==i){
-                            M.elmt[i][j] = 1.0;
+            DeterminantOBE Det = new DeterminantOBE(m);
+            if(Eq(Det.Determinant(), 0.0)){
+                System.out.println("Tidak memiliki invers");
+                M = null;
+            }
+            else{
+                for(int i=0; i<nRow; i++){
+                    for(int j=0; j<2*nCol; j++){
+                        if(j<nCol) {
+                            M.elmt[i][j] = m.elmt[i][j];
+                            res.elmt[i][j] = m.elmt[i][j];
                         }
                         else{
-                            M.elmt[i][j] = 0.0;
+                            if(j-(nCol)==i){
+                                M.elmt[i][j] = 1.0;
+                            }
+                            else{
+                                M.elmt[i][j] = 0.0;
+                            }
                         }
                     }
                 }
@@ -36,14 +44,9 @@ public class InversOBE extends SPLGauss{
         SPLGauss inv = new SPLGauss(this.M);
         DeterminantOBE Det = new DeterminantOBE(res);
 
-        if(Eq(Det.Determinant(), 0.0)){
-            System.out.println("Tidak memiliki invers");
-            return this.res;
-        }
-        else{
-            inv.JordanProcess();
-            return inv.M;
-        }
+        inv.JordanProcess();
+        return inv.M;
+
     }
     public Matriks getInvers(){
         Matriks inv = InversProcess();
@@ -53,5 +56,9 @@ public class InversOBE extends SPLGauss{
             }
         }
         return res;
+    }
+
+    public boolean hasInvers(){
+        return M!=null;
     }
 }

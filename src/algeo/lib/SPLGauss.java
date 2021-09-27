@@ -145,6 +145,8 @@ public class SPLGauss extends Matriks{
             List <Integer> idx = new ArrayList<>();
             int[] idxFirst = new int[M.nRow()];
             boolean[] allzeros = new boolean[M.nRow()];
+            HashMap<Integer, Integer> pos = new HashMap<>();
+            HashMap<Integer, Integer> parameterIdx = new HashMap<>();
             for(int i=0; i<M.nRow(); i++){
                 idxFirst[i] = -1;
                 allzeros[i] = true;
@@ -161,8 +163,11 @@ public class SPLGauss extends Matriks{
                     idx.add(i);
                 }
             }
+            int q = 0;
             for(int i=0; i<M.nRow(); i++){
                 if(allzeros[i]){
+                    parameterIdx.put(idx.get(0), q++);
+                    pos.put(i, idx.get(0));
                     Expression[i][idx.get(0)] = 1.0;
                     idx.remove(0);
                 }
@@ -182,46 +187,56 @@ public class SPLGauss extends Matriks{
                     }
                 }
             }
-
+//            System.out.println("\n");
+//            for(int i=0; i<M.nCol()-1; i++){
+//                for(int j=0; j<M.nCol(); j++){
+//                    System.out.print(Expression[i][j] + (" "));
+//                }
+//                System.out.println("");
+//            }
             for(int i=0; i<nCol-1; i++){
-                solution[i] = "";
                 if(allzeros[i]){
-                    solution[i] = "x" + (i+1) ;
+                    solution[pos.get(i)] = "c" + (parameterIdx.get(pos.get(i))+1) ;
                 }
                 else{
+                    solution[idxFirst[i]] = "";
                     for(int j=idxFirst[i]+1; j<M.nCol(); j++){
-                        boolean firstCome = (solution[i]=="");
+                        boolean firstCome = (solution[idxFirst[i]]=="");
                         if(!Eq(Expression[i][j], 0.0)&&j!=M.nCol()-1){
                             if(Eq(Expression[i][j], 1.0)){
-                                if(firstCome) solution[i] += "x" + (j+1);
-                                else solution[i] += " + x" + (j+1);
+                                if(firstCome) solution[idxFirst[i]] += "c" + (parameterIdx.get(j)+1);
+                                else solution[idxFirst[i]] += " + c" + (parameterIdx.get(j)+1);
                             }
                             else if(Eq(Expression[i][j], -1.0)){
-                                if(firstCome) solution[i] += "- x" + (j+1);
-                                else solution[i] += " - x" + (j+1);
+                                if(firstCome) solution[idxFirst[i]] += "-c" + (parameterIdx.get(j)+1);
+                                else solution[idxFirst[i]] += " - c" + (parameterIdx.get(j)+1);
                             }
                             else{
                                 if(Expression[i][j] < 0.0){
-                                    if(firstCome) solution[i] += "- " + Double.toString(Expression[i][j]).substring(1) + "x"  + (j+1);
-                                    else solution[i] += " - " + Double.toString(Expression[i][j]).substring(1) + "x"  + (j+1);
+                                    if(firstCome) solution[idxFirst[i]] += "-" + Double.toString(Expression[i][j]).substring(1) + "c"  + (parameterIdx.get(j)+1);
+                                    else solution[idxFirst[i]] += " - " + Double.toString(Expression[i][j]).substring(1) + "c"  + (parameterIdx.get(j)+1);
 
                                 }
                                 else if(Expression[i][j] > 0.0){
-                                    if(firstCome) solution[i] +=  Double.toString(Expression[i][j]).substring(0) + "x"  + (j+1);
-                                    else solution[i] += " + " + Double.toString(Expression[i][j]).substring(0) + "x"  + (j+1);
+                                    if(firstCome) solution[idxFirst[i]] +=  Double.toString(Expression[i][j]).substring(0) + "c"  + (parameterIdx.get(j)+1);
+                                    else solution[idxFirst[i]] += " + " + Double.toString(Expression[i][j]).substring(0) + "c"  + (parameterIdx.get(j)+1);
                                 }
                             }
                         }
                         else if(j == M.nCol()-1){
-                            if(Expression[i][j] < 0.0){
-                                if(firstCome) solution[i] += "- " + Double.toString(Expression[i][j]).substring(1);
-                                else solution[i] += " - " + Double.toString(Expression[i][j]).substring(1);
+                            if(Eq(Expression[i][j], 0.0)){
+                                if(firstCome) solution[idxFirst[i]] += Double.toString(0.0);
+                            }
+                            else if(Expression[i][j] < 0.0){
+                                if(firstCome) solution[idxFirst[i]] += "-" + Double.toString(Expression[i][j]).substring(1);
+                                else solution[idxFirst[i]] += " - " + Double.toString(Expression[i][j]).substring(1);
 
                             }
                             else if(Expression[i][j] > 0.0){
-                                if(firstCome) solution[i] +=  Double.toString(Expression[i][j]).substring(0);
-                                else solution[i] += " + " + Double.toString(Expression[i][j]).substring(0);
+                                if(firstCome) solution[idxFirst[i]] +=  Double.toString(Expression[i][j]).substring(0);
+                                else solution[idxFirst[i]] += " + " + Double.toString(Expression[i][j]).substring(0);
                             }
+
                         }
                     }
                 }
