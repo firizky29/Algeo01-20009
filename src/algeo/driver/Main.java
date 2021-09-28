@@ -31,11 +31,16 @@ public class Main {
         //SPLGauss childm = new SPLGauss(m);
 //        InversOBE childm = new InversOBE(m);
 //        if(childm.hasInvers()) childm.getInvers().tulisMatriks2();
+//        System.out.println("\n");
+        InverseCofactor childm1 = new InverseCofactor(m);
+        InversOBE childm2 = new InversOBE(m);
+        childm1.tulisMatriks2();
+        childm2.getInvers().tulisMatriks2();
 
 
-        DeterminantOBE childm = new DeterminantOBE(m);
-        if(childm.hasDeterminant())
-                System.out.println(childm.Determinant());
+//        DeterminantOBE childm = new DeterminantOBE(m);
+//        if(childm.hasDeterminant())
+//                System.out.println(childm.Determinant());
 //        DeterminantCofactor childm1 = new DeterminantCofactor();
 //        System.out.println(childm1.determinant(m));
         //childm.M.tulisMatriks2();
