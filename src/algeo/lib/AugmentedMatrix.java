@@ -7,7 +7,7 @@ import java.util.*;
 
 // disini diisi pemrosesan matriksnya (semacam bikin implementasi .h di c)
 public class AugmentedMatrix extends Matriks {
-    protected Double[] constant;
+    public Double[] constant;
     public Double[][] coefficient;
     protected int coefRow, coefCol;
     private int[] zeros;

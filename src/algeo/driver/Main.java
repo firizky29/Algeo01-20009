@@ -32,11 +32,18 @@ public class Main {
 //        InversOBE childm = new InversOBE(m);
 //        if(childm.hasInvers()) childm.getInvers().tulisMatriks2();
 //        System.out.println("\n");
-        InverseCofactor childm1 = new InverseCofactor(m);
-        InverseOBE childm2 = new InverseOBE(m);
-        childm1.getInverse();
-        childm2.getInverse();
+//        InverseCofactor childm1 = new InverseCofactor(m);
+//        InverseOBE childm2 = new InverseOBE(m);
+//        childm1.getInverse();
+//        childm2.getInverse();
+        SPLCramer childm1 = new SPLCramer(m);
+        SPLGauss childm2 = new SPLGauss(m);
+        childm2.JordanProcess();
+        SPLInvers childm3 = new SPLInvers(m);
 
+        System.out.println(Arrays.toString(childm1.getSolutionVal()));
+        System.out.println(Arrays.toString(childm2.getSolution()));
+        System.out.println(Arrays.toString(childm3.getSolutionVal()));
 
 //        DeterminantOBE childm = new DeterminantOBE(m);
 //        if(childm.hasDeterminant())
