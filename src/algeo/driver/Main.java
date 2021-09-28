@@ -33,9 +33,9 @@ public class Main {
 //        if(childm.hasInvers()) childm.getInvers().tulisMatriks2();
 //        System.out.println("\n");
         InverseCofactor childm1 = new InverseCofactor(m);
-        InversOBE childm2 = new InversOBE(m);
-        childm1.tulisMatriks2();
-        childm2.getInvers().tulisMatriks2();
+        InverseOBE childm2 = new InverseOBE(m);
+        childm1.getInverse();
+        childm2.getInverse();
 
 
 //        DeterminantOBE childm = new DeterminantOBE(m);

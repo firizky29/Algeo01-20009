@@ -32,6 +32,9 @@ public class DeterminantOBE extends Matriks{
     }
 
     public Double Determinant() {
+        if(!this.hasDeterminant()){
+            return Double.NaN;
+        }
         Double res = 1.0;
         int numOfSwaps = 0;
         int i, j, k, p;

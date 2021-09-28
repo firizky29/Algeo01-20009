@@ -4,9 +4,9 @@ import algeo.adt.Matriks;
 
 import javax.swing.*;
 
-public class InversOBE extends SPLGauss{
+public class InverseOBE extends SPLGauss{
     Matriks res;
-    public InversOBE(Matriks m){
+    public InverseOBE(Matriks m){
         super(m);
         res = new Matriks(nRow, nCol);
         if(nRow!=nCol){
@@ -17,7 +17,7 @@ public class InversOBE extends SPLGauss{
             M = new Matriks(nRow, 2*nCol);
             DeterminantOBE Det = new DeterminantOBE(m);
             if(Eq(Det.Determinant(), 0.0)){
-                System.out.println("Tidak memiliki invers");
+                System.out.println("Tidak memiliki balikan");
                 M = null;
             }
             else{
@@ -48,17 +48,18 @@ public class InversOBE extends SPLGauss{
         return inv.M;
 
     }
-    public Matriks getInvers(){
+    public void getInverse(){
+        if(!this.hasInverse()) return;
         Matriks inv = InversProcess();
         for(int i=0; i<nRow; i++){
             for(int j=0; j<nCol; j++){
                 res.elmt[i][j] = inv.elmt[i][nCol+j];
             }
         }
-        return res;
+        res.tulisMatriks2();
     }
 
-    public boolean hasInvers(){
+    public boolean hasInverse(){
         return M!=null;
     }
 }
