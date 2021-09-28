@@ -6,11 +6,16 @@ import algeo.adt.Matriks;
 public class InverseCofactor extends Matriks {
     public InverseCofactor(Matriks m){
         super(m);
-        CofactorMatrix cofmat = new CofactorMatrix(m);
-        for(int i=0; i<m.nRow(); i++){
-            for(int j=0; j<m.nCol(); j++){
-                DeterminantCofactor detcof = new DeterminantCofactor();
-                this.elmt[i][j] = cofmat.adjoin().elmt[i][j] / detcof.determinant(m);
+        DeterminantCofactor detcof = new DeterminantCofactor();
+        double det = detcof.determinant(m);
+        if (Eq(det,0.00)) System.out.println("Tidak ada Inverse.");
+        else {
+            CofactorMatrix cofmat = new CofactorMatrix(m);
+            for (int i = 0; i < m.nRow(); i++) {
+                for (int j = 0; j < m.nCol(); j++) {
+                    this.elmt[i][j] = cofmat.adjoin().elmt[i][j] / det;
+
+                }
             }
         }
     }

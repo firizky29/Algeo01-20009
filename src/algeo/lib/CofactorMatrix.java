@@ -8,7 +8,8 @@ public class CofactorMatrix extends Matriks{
         for(int i=0; i<matriks.nRow(); i++){
             for(int j=0; j<matriks.nCol(); j++){
                 Cofactor cof = new Cofactor(matriks, i, j);
-                this.elmt[i][j] = ((i+j)%2 == 0) ? cof.elmt[i][j] : (-1)*(cof.elmt[i][j]);
+                DeterminantCofactor detcof = new DeterminantCofactor();
+                this.elmt[i][j] = ((i+j)%2 == 0) ? detcof.determinant(cof) : (-1)*(detcof.determinant(cof));
             }
         }
     }
