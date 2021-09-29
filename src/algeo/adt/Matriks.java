@@ -1,11 +1,16 @@
 package algeo.adt;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 // disini tulis adt matriksnya ya guys
 public class Matriks {
@@ -24,14 +29,32 @@ public class Matriks {
             this.nCol = nCol;
     }
     // versi double
-    public Matriks(String filePath) throws FileNotFoundException {
+    public Matriks(String filePath) throws IOException {
         int i,j;
+        File file = new File(filePath);
+        Scanner scanner;
+        Stream<String> stream;
+        try {
+            scanner = new Scanner(file);
+            stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8);
+        } catch (FileNotFoundException | NoSuchFileException e) {
+            System.out.println("gak ada file");
+            return;
+        }
+        int col = 0;
+        int row = 0;
+        if (scanner.hasNextLine()) {
+            col = scanner.nextLine().split(" ").length;
+        }
+        row = (int) (stream).count();
+        scanner.close();
 
-        Scanner in = new Scanner(new File(filePath));
-        nRow = in.nextInt();nCol = in.nextInt();
+        Scanner in = new Scanner (new File(filePath));
+        nRow = row;
+        nCol = col;
         elmt = new Double[nRow][nCol];
-        for(i=0;i<nRow;i++) {
-            for(j=0;j<nCol;j++) {
+        for (i = 0; i < nRow; i++) {
+            for (j = 0; j < nCol; j++) {
                 elmt[i][j] = in.nextDouble();
             }
         }
@@ -115,14 +138,5 @@ public class Matriks {
             elmt[j][k] = tmp;
         }
     }
-//    public Double getDetOBE(){
-//        DeterminantOBE det = new DeterminantOBE();
-//        int i;
-//        double res = 1.0;
-//        det.process();
-//        for(i=0; i<this.nRow(); i++){
-//            res *= det.M.elmt[i][i];
-//        }
-//        return  res;
-//    }
+
 }

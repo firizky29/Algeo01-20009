@@ -3,6 +3,7 @@ package algeo.lib;
 import algeo.adt.Matriks;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 // disini diisi pemrosesan matriksnya (semacam bikin implementasi .h di c)
@@ -19,7 +20,7 @@ public class AugmentedMatrix extends Matriks {
         this.coefCol = nCol-1;
         this.zeros = new int[nRow];
     }
-    public AugmentedMatrix(String filePath) throws FileNotFoundException{
+    public AugmentedMatrix(String filePath) throws IOException {
         super(filePath);
         this.constant = new Double[nRow];
         this.coefficient = new Double[nRow][nCol-1];

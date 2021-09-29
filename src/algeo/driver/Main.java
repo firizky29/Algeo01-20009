@@ -3,10 +3,14 @@ package algeo.driver;
 import algeo.adt.Matriks;
 import algeo.lib.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        System.out.println("Wow bisa!");
 //        Matriks m,m3;
 //        try{
@@ -27,7 +31,14 @@ public class Main {
         // Misalkan punya matriks m (dibuat pas awal banget)
         //Matriks m = new Matriks();
         // buat nge-Jordan atau nge-Gauss berarti
-        Matriks m = new Matriks();
+        Matriks m = new Matriks("test/input/test.txt");
+        m.tulisMatriks2();
+//        File myObj = new File("test/input/test.txt");
+//        Scanner myReader = new Scanner(myObj);
+//        while (myReader.hasNextLine()) {
+//            String data = myReader.nextLine();
+//            System.out.println(data);
+//        }
         //SPLGauss childm = new SPLGauss(m);
 //        InversOBE childm = new InversOBE(m);
 //        if(childm.hasInvers()) childm.getInvers().tulisMatriks2();
@@ -36,14 +47,14 @@ public class Main {
 //        InverseOBE childm2 = new InverseOBE(m);
 //        childm1.getInverse();
 //        childm2.getInverse();
-        SPLCramer childm1 = new SPLCramer(m);
-        SPLGauss childm2 = new SPLGauss(m);
-        childm2.JordanProcess();
-        SPLInvers childm3 = new SPLInvers(m);
-
-        System.out.println(Arrays.toString(childm1.getSolutionVal()));
-        System.out.println(Arrays.toString(childm2.getSolution()));
-        System.out.println(Arrays.toString(childm3.getSolutionVal()));
+//        SPLCramer childm1 = new SPLCramer(m);
+//        SPLGauss childm2 = new SPLGauss(m);
+//        childm2.JordanProcess();
+//        SPLInvers childm3 = new SPLInvers(m);
+//
+//        System.out.println(Arrays.toString(childm1.getSolutionVal()));
+//        System.out.println(Arrays.toString(childm2.getSolution()));
+//        System.out.println(Arrays.toString(childm3.getSolutionVal()));
 
 //        DeterminantOBE childm = new DeterminantOBE(m);
 //        if(childm.hasDeterminant())
