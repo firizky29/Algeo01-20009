@@ -119,7 +119,7 @@ public class FrameDetOBE extends FrameDetInv implements ActionListener {
                     if(mat.hasDeterminant()) {
                         res.setText(Double.toString(mat.Determinant()));
                     }
-                } catch (FileNotFoundException ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }

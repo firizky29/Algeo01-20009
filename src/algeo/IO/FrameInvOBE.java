@@ -157,6 +157,8 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                     }
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
             }
         }

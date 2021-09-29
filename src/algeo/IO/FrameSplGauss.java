@@ -140,7 +140,7 @@ public class FrameSplGauss extends FrameSpl implements ActionListener {
                         solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
                     }
                     res.setText(solusijoined.toString());
-                } catch (FileNotFoundException ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
