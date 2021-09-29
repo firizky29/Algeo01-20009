@@ -84,7 +84,7 @@ public class FrameDetOBE extends FrameDetInv implements ActionListener {
                 inputMatriks.setText("");
             }
         } else if(e.getSource()==calc1) {
-            if(nrow>0 && nrow<10 && ncol>0 && ncol<10) {
+            if(nrow>0 && nrow<=10 && ncol>0 && ncol<=10) {
                 int i,j;
                 Matriks m = new Matriks(nrow,ncol);
                 for(i=0;i<nrow;i++) {

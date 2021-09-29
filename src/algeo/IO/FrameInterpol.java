@@ -22,7 +22,10 @@ public class FrameInterpol extends JFrame implements ActionListener {
     protected JButton open;
     protected JTextField pathIn;
 
+    protected JTextField textPolinom;
+//    protected JTextField
     protected JPanel gridInter;
+    protected JTextField[][] xyHampiran = new JTextField[4][2];
     protected JTextArea res;
     protected JButton save;
     protected JTextField pathOut;
@@ -104,7 +107,14 @@ public class FrameInterpol extends JFrame implements ActionListener {
 
         panelInter.setLayout(new GridBagLayout());
         GridBagConstraints interC = new GridBagConstraints();
-        JLabel lPers = new JLabel("Persamaan Polinom:");
+        textPolinom = new JTextField("Persamaan Polinom:");
+        textPolinom.setEditable(false);
+        interC.gridx=0; interC.gridy=0;
+        interC.gridheight=1; interC.gridwidth=1;
+        interC.weightx=1; interC.weighty=1;
+        interC.fill = GridBagConstraints.HORIZONTAL;
+        panelInter.add(textPolinom,interC);
+
 
         this.setTitle("Interpolasi Polinom");
     }
