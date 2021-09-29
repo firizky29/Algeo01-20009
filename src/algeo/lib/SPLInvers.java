@@ -48,4 +48,14 @@ public class SPLInvers extends AugmentedMatrix {
         return solution;
 
     }
+
+    public String[] getSolutionString() {
+        Double[] solutionVal = getSolutionVal();
+        String[] solution = new String[solutionVal.length];
+        int i;
+        for(i=0;i< solutionVal.length;i++) {
+            solution[i] = Double.toString(solutionVal[i]);
+        }
+        return solution;
+    }
 }

@@ -1,7 +1,7 @@
 package algeo.IO;
 
 import algeo.adt.Matriks;
-import algeo.lib.InverseOBE;
+import algeo.lib.DeterminantCofactor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class FrameInvOBE extends FrameDetInv implements ActionListener {
+public class FrameDetKofaktor extends FrameDetInv implements ActionListener {
     protected int nrow, ncol;
 
-    public FrameInvOBE() {
+    public FrameDetKofaktor() {
         super();
-        this.setTitle("Matriks Balikan - Metode Reduksi Baris");
+        this.setTitle("Determinan - Metode Ekspansi Kofaktor");
         open.addActionListener(this);
         save.addActionListener(this);
         create.addActionListener(this);
@@ -92,21 +92,9 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                         m.elmt[i][j] = parse(koef[i][j].getText());
                     }
                 }
-                InverseOBE mat = new InverseOBE(m);
-                if(mat.hasInverse()) {
-                    Matriks invmat = mat.getInverse();
-                    StringBuilder sb = new StringBuilder();
-                    for(i=0;i<invmat.nRow();i++) {
-                        for(j=0;j<invmat.nCol();j++) {
-                            sb.append(invmat.elmt[i][j]+"");
-                            if(j==invmat.nCol()-1) {
-                                sb.append("\n");
-                            } else {
-                                sb.append(" ");
-                            }
-                        }
-                    }
-                    res.setText(sb.toString());
+                DeterminantCofactor mat = new DeterminantCofactor(m);
+                if(mat.hasDeterminant()) {
+                    res.setText(Double.toString(mat.Determinant()));
                 }
             } else if(nrow>10 || ncol>10) {
                 int i,j;
@@ -118,45 +106,21 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                     }
                 }
                 in.close();
-                InverseOBE mat = new InverseOBE(m);
-                if(mat.hasInverse()) {
-                    Matriks invmat = mat.getInverse();
-                    StringBuilder sb = new StringBuilder();
-                    for(i=0;i<invmat.nRow();i++) {
-                        for(j=0;j<invmat.nCol();j++) {
-                            sb.append(invmat.elmt[i][j]+"");
-                            if(j==invmat.nCol()-1) {
-                                sb.append("\n");
-                            } else {
-                                sb.append(" ");
-                            }
-                        }
-                    }
-                    res.setText(sb.toString());
+                DeterminantCofactor mat = new DeterminantCofactor(m);
+                if(mat.hasDeterminant()) {
+                    res.setText(Double.toString(mat.Determinant()));
                 }
             }
         } else if(e.getSource()==calc2) {
             if(fileIn.getSelectedFile()!=null) {
                 try {
-                    int i,j;
-                    InverseOBE mat = new InverseOBE(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
-                    if(mat.hasInverse()) {
-                        Matriks invmat = mat.getInverse();
-                        StringBuilder sb = new StringBuilder();
-                        for(i=0;i<invmat.nRow();i++) {
-                            for(j=0;j<invmat.nCol();j++) {
-                                sb.append(invmat.elmt[i][j]+"");
-                                if(j==invmat.nCol()-1) {
-                                    sb.append("\n");
-                                } else {
-                                    sb.append(" ");
-                                }
-                            }
-                        }
-                        res.setText(sb.toString());
+                    int j;
+                    DeterminantCofactor mat = new DeterminantCofactor(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
+                    if(mat.hasDeterminant()) {
+                        res.setText(Double.toString(mat.Determinant()));
                     }
-                }  catch (IOException ioException) {
-                    ioException.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         }

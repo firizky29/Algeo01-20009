@@ -1,7 +1,8 @@
 package algeo.IO;
 
 import algeo.adt.Matriks;
-import algeo.lib.InverseOBE;
+import algeo.lib.SPLGauss;
+import algeo.lib.SPLInvers;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +13,12 @@ import java.io.IOException;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class FrameInvOBE extends FrameDetInv implements ActionListener {
+public class FrameSplInverse extends FrameSpl implements ActionListener {
     protected int nrow, ncol;
 
-    public FrameInvOBE() {
+    public FrameSplInverse() {
         super();
-        this.setTitle("Matriks Balikan - Metode Reduksi Baris");
+        this.setTitle("SPL - Metode Eliminasi Gauss");
         open.addActionListener(this);
         save.addActionListener(this);
         create.addActionListener(this);
@@ -50,15 +51,24 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
         } else if(e.getSource()==create) {
             int i,j;
             gridSpl.removeAll();
-            ncol = Integer.parseInt(col.getText());
-            nrow = ncol;
+            ncol = Integer.parseInt(col.getText())+1;
+            nrow = Integer.parseInt(row.getText());
             if(ncol>0 && ncol<=10 && nrow>0 && nrow<=10) {
-                gridSpl.setLayout(new GridLayout(nrow,ncol,5,5));
+                gridSpl.setLayout(new GridLayout(nrow,2*ncol-1,0,0));
                 for(i=0;i<nrow;i++) {
                     for(j=0;j<ncol;j++) {
                         koef[i][j].setText("0");
                         koef[i][j].setPreferredSize(new Dimension(50,25));
                         gridSpl.add(koef[i][j]);
+                        if(j<ncol-2) {
+                            xi[i][j].setText("x"+(j+1)+"+");
+                            xi[i][j].setPreferredSize(new Dimension(50,25));
+                            gridSpl.add(xi[i][j]);
+                        } else if(j==ncol-2) {
+                            xi[i][j].setText("x"+(j+1)+"=");
+                            xi[i][j].setPreferredSize(new Dimension(50,25));
+                            gridSpl.add(xi[i][j]);
+                        }
                     }
                 }
                 reset.setVisible(true);
@@ -92,22 +102,13 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                         m.elmt[i][j] = parse(koef[i][j].getText());
                     }
                 }
-                InverseOBE mat = new InverseOBE(m);
-                if(mat.hasInverse()) {
-                    Matriks invmat = mat.getInverse();
-                    StringBuilder sb = new StringBuilder();
-                    for(i=0;i<invmat.nRow();i++) {
-                        for(j=0;j<invmat.nCol();j++) {
-                            sb.append(invmat.elmt[i][j]+"");
-                            if(j==invmat.nCol()-1) {
-                                sb.append("\n");
-                            } else {
-                                sb.append(" ");
-                            }
-                        }
-                    }
-                    res.setText(sb.toString());
+                SPLInvers spl = new SPLInvers(m);
+                String[] solusi = spl.getSolutionString();
+                StringBuilder solusijoined = new StringBuilder();
+                for(j=0;j<spl.getCoefCol();j++) {
+                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
+                res.setText(solusijoined.toString());
             } else if(nrow>10 || ncol>10) {
                 int i,j;
                 Matriks m = new Matriks(nrow,ncol);
@@ -118,45 +119,27 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                     }
                 }
                 in.close();
-                InverseOBE mat = new InverseOBE(m);
-                if(mat.hasInverse()) {
-                    Matriks invmat = mat.getInverse();
-                    StringBuilder sb = new StringBuilder();
-                    for(i=0;i<invmat.nRow();i++) {
-                        for(j=0;j<invmat.nCol();j++) {
-                            sb.append(invmat.elmt[i][j]+"");
-                            if(j==invmat.nCol()-1) {
-                                sb.append("\n");
-                            } else {
-                                sb.append(" ");
-                            }
-                        }
-                    }
-                    res.setText(sb.toString());
+                SPLInvers spl = new SPLInvers(m);
+                String[] solusi = spl.getSolutionString();
+                StringBuilder solusijoined = new StringBuilder();
+                for(j=0;j<spl.getCoefCol();j++) {
+                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
+                res.setText(solusijoined.toString());
             }
         } else if(e.getSource()==calc2) {
             if(fileIn.getSelectedFile()!=null) {
                 try {
-                    int i,j;
-                    InverseOBE mat = new InverseOBE(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
-                    if(mat.hasInverse()) {
-                        Matriks invmat = mat.getInverse();
-                        StringBuilder sb = new StringBuilder();
-                        for(i=0;i<invmat.nRow();i++) {
-                            for(j=0;j<invmat.nCol();j++) {
-                                sb.append(invmat.elmt[i][j]+"");
-                                if(j==invmat.nCol()-1) {
-                                    sb.append("\n");
-                                } else {
-                                    sb.append(" ");
-                                }
-                            }
-                        }
-                        res.setText(sb.toString());
+                    int j;
+                    SPLInvers m = new SPLInvers(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
+                    String[] solusi = m.getSolutionString();
+                    StringBuilder solusijoined = new StringBuilder();
+                    for(j=0;j<m.getCoefCol();j++) {
+                        solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
                     }
-                }  catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    res.setText(solusijoined.toString());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         }

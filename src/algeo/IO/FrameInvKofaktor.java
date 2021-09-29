@@ -1,7 +1,7 @@
 package algeo.IO;
 
 import algeo.adt.Matriks;
-import algeo.lib.InverseOBE;
+import algeo.lib.InverseCofactor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class FrameInvOBE extends FrameDetInv implements ActionListener {
+public class FrameInvKofaktor extends FrameDetInv implements ActionListener {
     protected int nrow, ncol;
 
-    public FrameInvOBE() {
+    public FrameInvKofaktor() {
         super();
-        this.setTitle("Matriks Balikan - Metode Reduksi Baris");
+        this.setTitle("Matriks Balikan - Metode Ekspansi Kofaktor");
         open.addActionListener(this);
         save.addActionListener(this);
         create.addActionListener(this);
@@ -92,7 +92,7 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                         m.elmt[i][j] = parse(koef[i][j].getText());
                     }
                 }
-                InverseOBE mat = new InverseOBE(m);
+                InverseCofactor mat = new InverseCofactor(m);
                 if(mat.hasInverse()) {
                     Matriks invmat = mat.getInverse();
                     StringBuilder sb = new StringBuilder();
@@ -118,7 +118,7 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
                     }
                 }
                 in.close();
-                InverseOBE mat = new InverseOBE(m);
+                InverseCofactor mat = new InverseCofactor(m);
                 if(mat.hasInverse()) {
                     Matriks invmat = mat.getInverse();
                     StringBuilder sb = new StringBuilder();
@@ -139,7 +139,7 @@ public class FrameInvOBE extends FrameDetInv implements ActionListener {
             if(fileIn.getSelectedFile()!=null) {
                 try {
                     int i,j;
-                    InverseOBE mat = new InverseOBE(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
+                    InverseCofactor mat = new InverseCofactor(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
                     if(mat.hasInverse()) {
                         Matriks invmat = mat.getInverse();
                         StringBuilder sb = new StringBuilder();

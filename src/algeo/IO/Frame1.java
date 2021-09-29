@@ -127,7 +127,8 @@ public class Frame1 extends JFrame implements ActionListener {
             subFrame.setVisible(false);
             new FrameSplJordan();
         } else if(e.getSource()==buttonSplInvers) {
-
+            subFrame.setVisible(false);
+            new FrameSplInverse();
         } else if(e.getSource()==buttonSplCramer) {
             subFrame.setVisible(false);
             new FrameSplCramer();
@@ -135,12 +136,14 @@ public class Frame1 extends JFrame implements ActionListener {
             subFrame.setVisible(false);
             new FrameDetOBE();
         } else if(e.getSource()==buttonDetCofactor) {
-
+            subFrame.setVisible(false);
+            new FrameDetKofaktor();
         } else if(e.getSource()==buttonInvOBE) {
             subFrame.setVisible(false);
             new FrameInvOBE();
         } else if(e.getSource()==buttonInvCofactor) {
-
+            subFrame.setVisible(false);
+            new FrameInvKofaktor();
         }
     }
 }
