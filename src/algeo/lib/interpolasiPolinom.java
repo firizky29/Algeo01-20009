@@ -45,4 +45,36 @@ public class interpolasiPolinom {
     public Double[] getCoefPolinom() {
         return coefPolinom;
     }
+    public String getPolinomString() {
+        StringBuilder sb = new StringBuilder();
+        int i; boolean awal=true;
+        for(i=points.nRow()-1;i>=0;i--) {
+            if(!Matriks.Eq(coefPolinom[i],0.0)) {
+                if(awal && coefPolinom[i]>0.0) {
+                    sb.append(coefPolinom[i]);
+                    if(i>1) {
+                        sb.append("x^"+i);
+                    } else if(i==1) {
+                        sb.append("x");
+                    } //i==0
+                } else if(coefPolinom[i]>0.0) {
+                    sb.append("+"+coefPolinom[i]);
+                    if(i>1) {
+                        sb.append("x^"+i);
+                    } else if(i==1) {
+                        sb.append("x");
+                    } //i==0
+                } else if(coefPolinom[i]<0.0) {
+                    sb.append(coefPolinom[i]);
+                    if(i>1) {
+                        sb.append("x^"+i);
+                    } else if(i==1) {
+                        sb.append("x");
+                    } //i==0
+                }
+                awal = false;
+            }
+        }
+        return sb.toString();
+    }
 }
