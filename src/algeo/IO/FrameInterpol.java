@@ -244,7 +244,7 @@ public class FrameInterpol extends JFrame implements ActionListener {
                 if(nInterpolated<=4) {
                     for(i=0;i<nInterpolated;i++) {
                         x = Double.parseDouble(xyHampiran[i][0].getText());
-                        xyHampiran[i][1].setText(Double.toString(polinom1.getHampiran(x)));
+                        xyHampiran[i][1].setText(String.format("%.4f",polinom1.getHampiran(x)));
                     }
                 } else {
                     Scanner in2 = new Scanner(res.getText());
@@ -256,7 +256,8 @@ public class FrameInterpol extends JFrame implements ActionListener {
                     in2.close();
                     StringBuilder sb = new StringBuilder();
                     for(i=0;i<nInterpolated;i++) {
-                        sb.append(interP.elmt[i][0]+" "+interP.elmt[i][1]+(i+1<nInterpolated?"\n":""));
+                        sb.append(String.format("%.4f %.4f", interP.elmt[i][0], interP.elmt[i][1]));
+                        sb.append((i+1<nInterpolated?"\n":""));
                     }
                     res.setText(sb.toString());
                 }
@@ -275,7 +276,7 @@ public class FrameInterpol extends JFrame implements ActionListener {
                 if(nInterpolated<=4) {
                     for(i=0;i<nInterpolated;i++) {
                         x = Double.parseDouble(xyHampiran[i][0].getText());
-                        xyHampiran[i][1].setText(Double.toString(polinom1.getHampiran(x)));
+                        xyHampiran[i][1].setText(String.format("%.4f",polinom1.getHampiran(x)));
                     }
                 } else {
                     Scanner in2 = new Scanner(res.getText());
@@ -287,7 +288,8 @@ public class FrameInterpol extends JFrame implements ActionListener {
                     in2.close();
                     StringBuilder sb = new StringBuilder();
                     for(i=0;i<nInterpolated;i++) {
-                        sb.append(interP.elmt[i][0]+" "+interP.elmt[i][1]+(i+1<nInterpolated?"\n":""));
+                        sb.append(String.format("%.4f %.4f", interP.elmt[i][0], interP.elmt[i][1]));
+                        sb.append((i+1<nInterpolated?"\n":""));
                     }
                     res.setText(sb.toString());
                 }
@@ -302,7 +304,7 @@ public class FrameInterpol extends JFrame implements ActionListener {
                     if(nInterpolated<=4) {
                         for(i=0;i<nInterpolated;i++) {
                             x = Double.parseDouble(xyHampiran[i][0].getText());
-                            xyHampiran[i][1].setText(Double.toString(polinom1.getHampiran(x)));
+                            xyHampiran[i][1].setText(String.format("%.4f",polinom1.getHampiran(x)));
                         }
                     } else {
                         Scanner in2 = new Scanner(res.getText());
@@ -314,7 +316,8 @@ public class FrameInterpol extends JFrame implements ActionListener {
                         in2.close();
                         StringBuilder sb = new StringBuilder();
                         for(i=0;i<nInterpolated;i++) {
-                            sb.append(interP.elmt[i][0]+" "+interP.elmt[i][1]+(i+1<nInterpolated?"\n":""));
+                            sb.append(String.format("%.4f %.4f", interP.elmt[i][0], interP.elmt[i][1]));
+                            sb.append((i+1<nInterpolated?"\n":""));
                         }
                         res.setText(sb.toString());
                     }

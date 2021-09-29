@@ -51,21 +51,22 @@ public class interpolasiPolinom {
         for(i=points.nRow()-1;i>=0;i--) {
             if(!Matriks.Eq(coefPolinom[i],0.0)) {
                 if(awal && coefPolinom[i]>0.0) {
-                    sb.append(coefPolinom[i]);
+                    sb.append(String.format("%.4f", coefPolinom[i]));
                     if(i>1) {
                         sb.append("x^"+i);
                     } else if(i==1) {
                         sb.append("x");
                     } //i==0
                 } else if(coefPolinom[i]>0.0) {
-                    sb.append("+"+coefPolinom[i]);
+                    sb.append("+");
+                    sb.append(String.format("%.4f", coefPolinom[i]));
                     if(i>1) {
                         sb.append("x^"+i);
                     } else if(i==1) {
                         sb.append("x");
                     } //i==0
                 } else if(coefPolinom[i]<0.0) {
-                    sb.append(coefPolinom[i]);
+                    sb.append(String.format("%.4f", coefPolinom[i]));
                     if(i>1) {
                         sb.append("x^"+i);
                     } else if(i==1) {
