@@ -32,9 +32,8 @@ public class InverseCofactor extends Matriks {
             }
         }
     }
-    public void getInverse(){
-        if(!this.hasInverse()) return;
-        res.tulisMatriks2();
+    public Matriks getInverse(){
+        return res;
     }
     public boolean hasInverse(){
         return res!=null;

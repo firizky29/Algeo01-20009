@@ -48,15 +48,14 @@ public class InverseOBE extends SPLGauss{
         return inv.M;
 
     }
-    public void getInverse(){
-        if(!this.hasInverse()) return;
+    public Matriks getInverse(){
         Matriks inv = InversProcess();
         for(int i=0; i<nRow; i++){
             for(int j=0; j<nCol; j++){
                 res.elmt[i][j] = inv.elmt[i][nCol+j];
             }
         }
-        res.tulisMatriks2();
+        return res;
     }
 
     public boolean hasInverse(){
