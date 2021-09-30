@@ -89,4 +89,8 @@ public class RLB {
         }
         return estimasi;
     }
+
+    public int getK() {
+        return k;
+    }
 }

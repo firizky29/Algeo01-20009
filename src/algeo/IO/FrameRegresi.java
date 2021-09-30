@@ -13,7 +13,7 @@ import java.util.Formatter;
 import java.util.Scanner;
 
 public class FrameRegresi extends JFrame implements ActionListener {
-    protected int nData=0, nVar=0, nRegresi=0;
+    protected int nData=0, nVar=0, nVar2=0, nRegresi=0;
 
     protected JPanel panelData;
     protected JPanel panelRegresi;
@@ -33,6 +33,7 @@ public class FrameRegresi extends JFrame implements ActionListener {
     protected JTextField textRegresi;
     protected JTextField nquery;
     protected JButton createQuery;
+    protected JButton createQuery2;
     protected JPanel gridRegresi;
     protected JTextField[][] xyHampiran = new JTextField[4][10];
     protected JTextArea res = new JTextArea();
@@ -135,7 +136,7 @@ public class FrameRegresi extends JFrame implements ActionListener {
         textRegresi.setPreferredSize(new Dimension(500,25));
         textRegresi.setEditable(false);
         RegresiC.gridx=0; RegresiC.gridy=0;
-        RegresiC.gridheight=1; RegresiC.gridwidth=3;
+        RegresiC.gridheight=1; RegresiC.gridwidth=4;
         RegresiC.weightx=1; RegresiC.weighty=1;
         RegresiC.fill = GridBagConstraints.HORIZONTAL;
         panelRegresi.add(textRegresi,RegresiC);
@@ -148,10 +149,14 @@ public class FrameRegresi extends JFrame implements ActionListener {
         nquery.setPreferredSize(new Dimension(100,25));
         RegresiC.gridx=1;
         panelRegresi.add(nquery,RegresiC);
-        createQuery = new JButton("Create");
+        createQuery = new JButton("Create (grid)");
         createQuery.setPreferredSize(new Dimension(100,25));
         RegresiC.gridx=2;
         panelRegresi.add(createQuery,RegresiC);
+        createQuery2 = new JButton("Create (file)");
+        createQuery.setPreferredSize(new Dimension(100,25));
+        RegresiC.gridx=3;
+        panelRegresi.add(createQuery2,RegresiC);
         for(i=0;i<4;i++) {
             for(j=0;j<10;j++) {
                 xyHampiran[i][j] = new JTextField();
@@ -160,7 +165,7 @@ public class FrameRegresi extends JFrame implements ActionListener {
         gridRegresi = new JPanel();
         gridRegresi.setPreferredSize(new Dimension(500,150));
         RegresiC.gridx=0; RegresiC.gridy=2;
-        RegresiC.gridwidth=3; RegresiC.gridheight=5;
+        RegresiC.gridwidth=4; RegresiC.gridheight=5;
         panelRegresi.add(gridRegresi,RegresiC);
         save = new JButton("Save");
         save.setPreferredSize(new Dimension(100,25));
@@ -194,6 +199,7 @@ public class FrameRegresi extends JFrame implements ActionListener {
         calc2.addActionListener(this);
         open.addActionListener(this);
         createQuery.addActionListener(this);
+        createQuery2.addActionListener(this);
         save.addActionListener(this);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -333,35 +339,37 @@ public class FrameRegresi extends JFrame implements ActionListener {
         } else if(e.getSource()==calc2) {
             if(fileIn.getSelectedFile()!=null) {
                 try{
-                    int i,j; double[] x=new double[nVar];
+                    int i,j;
                     Matriks p = new Matriks(fileIn.getSelectedFile().getAbsolutePath());
                     RLB Regresi1 = new RLB(p);
                     Regresi1.getMatriksCoef();
                     Regresi1.solveCoefReg();
+                    nVar2 = Regresi1.getK();
+                    double[] x=new double[nVar2];
                     textRegresi.setText("Persamaan Regresi: "+Regresi1.getRegEq());
                     if(nRegresi<=4) {
                         for(i=0;i<nRegresi;i++) {
-                            for(j=0;j<nVar;j++) {
+                            for(j=0;j<nVar2;j++) {
                                 x[j] = Double.parseDouble(xyHampiran[i][j].getText());
                             }
-                            xyHampiran[i][nVar].setText(String.format("%.4f",Regresi1.getEstimasi(x)));
+                            xyHampiran[i][nVar2].setText(String.format("%.4f",Regresi1.getEstimasi(x)));
                         }
                     } else {
                         Scanner in2 = new Scanner(res.getText());
-                        Matriks RegresiP = new Matriks(nRegresi,nVar+1);
-                        double[] xe = new double[nVar];
+                        Matriks RegresiP = new Matriks(nRegresi,nVar2+1);
+                        double[] xe = new double[nVar2];
                         for(i=0;i<nRegresi;i++) {
-                            for(j=0;j<nVar;j++) {
+                            for(j=0;j<nVar2;j++) {
                                 RegresiP.elmt[i][j] = in2.nextDouble();
                                 xe[j] = RegresiP.elmt[i][j];
                             }
-                            RegresiP.elmt[i][nVar] = Regresi1.getEstimasi(xe);
+                            RegresiP.elmt[i][nVar2] = Regresi1.getEstimasi(xe);
                         }
                         in2.close();
                         StringBuilder sb = new StringBuilder();
                         for(i=0;i<nRegresi;i++) {
                             sb.append(String.format("%.4f", RegresiP.elmt[i][0]));
-                            for(j=1;j<nVar+1;j++) {
+                            for(j=1;j<nVar2+1;j++) {
                                 sb.append(String.format(" %.4f", RegresiP.elmt[i][j]));
                             }
                             sb.append((i+1<nRegresi?"\n":""));
@@ -376,21 +384,21 @@ public class FrameRegresi extends JFrame implements ActionListener {
             fileIn.setCurrentDirectory(new File("."));
             fileIn.showOpenDialog(null);
             if(fileIn.getSelectedFile()!=null) pathIn.setText(fileIn.getSelectedFile().getAbsolutePath());
-        } else if(e.getSource()==createQuery) {
-            int i,j;
+        } else if(e.getSource()==createQuery || e.getSource()==createQuery2) {
+            int i,j, NowVar=(e.getSource()==createQuery?nVar:nVar2);
             gridRegresi.removeAll();
             nRegresi = Integer.parseInt(nquery.getText());
             if(nRegresi<=4) {
-                gridRegresi.setLayout(new GridLayout(nRegresi+1,nVar+1,0,5));
-                for(j=0;j<nVar;j++) {
+                gridRegresi.setLayout(new GridLayout(nRegresi+1,NowVar+1,0,5));
+                for(j=0;j<NowVar;j++) {
                     gridRegresi.add(xy2[j]);
                 }
                 gridRegresi.add(xy2[9]);
                 for(i=0;i<nRegresi;i++) {
-                    for(j=0;j<nVar+1;j++) {
+                    for(j=0;j<NowVar+1;j++) {
                         xyHampiran[i][j].setText("0");
                         xyHampiran[i][j].setPreferredSize(new Dimension(100,25));
-                        if(j==nVar){
+                        if(j==NowVar){
                             xyHampiran[i][j].setEditable(false);
                             xyHampiran[i][j].setText(null);
                         } else {
