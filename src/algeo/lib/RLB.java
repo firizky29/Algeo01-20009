@@ -5,15 +5,14 @@ import java.util.*;
 
 // Regresi Linier Berganda
 public class RLB {
-    Matriks m;      // Matriks koefisien b
-    Double[] b,B;   // b[i] yang mau dicari, B ruas kanan SPL
+    Matriks m;      // Matriks Augmented
+    Double[] b;     // b[i] yang mau dicari
     Double[][] x;   // x variabel bebas (yang bentuknya x[i][j]
     Double[] y;     // y variabel terikat (yang bentuknya y[i]
     int n,k;
     public RLB(int k, int n){      // k banyak variabel bebas, n banyak data
         b = new Double[k+1];
-        B = new Double[k+1];
-        m = new Matriks(k + 1,k+1);
+        m = new Matriks(k+1,k+2);
         x = new Double[k][n];
         y = new Double[n];
         this.n = n;
@@ -24,6 +23,21 @@ public class RLB {
                 x[i][j] = input.nextDouble();
             }
             y[j] = input.nextDouble();
+        }
+    }
+
+    public RLB(Matriks m) {         // m matriks dengan n baris dan k + 1 kolom
+        this.n = m.nRow();
+        this.k = m.nCol() - 1;
+        b = new Double[k+1];
+        m = new Matriks(k + 1,k+2);
+        x = new Double[k][n];
+        y = new Double[n];
+        for(int j=0; j<n; j++){
+            for(int i=0; i<k; i++){
+                x[i][j] = m.elmt[j][i];
+            }
+            y[j] = m.elmt[j][k];
         }
     }
 
@@ -42,13 +56,28 @@ public class RLB {
                 m.elmt[i][j] = coef;
             }
 
-            B[i] = 0d;
+            m.elmt[i][k+1] = 0d;
             for(int j=0; j<n; j++){
                 Double xi;
                 if(i==0) xi = 1d;
-                else xi = x[i][j];
-                B[i] += xi*y[j];
+                else xi = x[i-1][j];
+                m.elmt[i][k+1] += xi*y[j];
             }
         }
+    }
+
+    public void solveCoefReg(){
+        SPLInvers splinv = new SPLInvers(this.m);
+        b = splinv.getSolutionVal();
+    }
+
+    public String getRegEq(){
+        String eq = "y = ";
+        for(int i=0; i<=k; i++){
+            eq += b[i];
+            if(i!=0) eq += " x[" + i + "] + ";
+        }
+        eq += "e";
+        return eq;
     }
 }
