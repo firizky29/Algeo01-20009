@@ -1,5 +1,7 @@
 package algeo.IO;
 
+import javax.swing.border.Border;
+import java.awt.*;
 import java.io.IOException;
 
 // yg ini jelas isinya GUI

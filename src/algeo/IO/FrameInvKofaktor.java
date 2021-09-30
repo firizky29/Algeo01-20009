@@ -3,6 +3,7 @@ package algeo.IO;
 import algeo.adt.Matriks;
 import algeo.lib.InverseCofactor;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +16,8 @@ import java.util.Scanner;
 public class FrameInvKofaktor extends FrameDetInv implements ActionListener {
     protected int nrow, ncol;
 
-    public FrameInvKofaktor() {
-        super();
+    public FrameInvKofaktor(JFrame prefFrame) {
+        super(prefFrame);
         this.setTitle("Matriks Balikan - Metode Ekspansi Kofaktor");
         open.addActionListener(this);
         save.addActionListener(this);
@@ -24,6 +25,7 @@ public class FrameInvKofaktor extends FrameDetInv implements ActionListener {
         reset.addActionListener(this);
         calc2.addActionListener(this);
         calc1.addActionListener(this);
+        home.addActionListener(this);
     }
 
     @Override
@@ -51,7 +53,7 @@ public class FrameInvKofaktor extends FrameDetInv implements ActionListener {
             int i,j;
             gridSpl.removeAll();
             ncol = Integer.parseInt(col.getText());
-            nrow = ncol;
+            nrow = Integer.parseInt(row.getText());
             if(ncol>0 && ncol<=10 && nrow>0 && nrow<=10) {
                 gridSpl.setLayout(new GridLayout(nrow,ncol,5,5));
                 for(i=0;i<nrow;i++) {
@@ -159,6 +161,10 @@ public class FrameInvKofaktor extends FrameDetInv implements ActionListener {
                     ioException.printStackTrace();
                 }
             }
+        }else if(e.getSource()==home){
+            this.setVisible(false);
+            this.prevFrame.setVisible(true);
+            this.dispose();
         }
     }
 }

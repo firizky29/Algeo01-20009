@@ -31,8 +31,12 @@ public class Main {
         // Misalkan punya matriks m (dibuat pas awal banget)
         //Matriks m = new Matriks();
         // buat nge-Jordan atau nge-Gauss berarti
-        Matriks m = new Matriks("test/input/test.txt");
-        m.tulisMatriks2();
+        Matriks m = new Matriks();
+        SPLGauss spl = new SPLGauss(m);
+        spl.GaussProcess();
+        System.out.println(spl.getSolution().length);
+        System.out.println(Arrays.toString(spl.getSolution()));
+
 //        File myObj = new File("test/input/test.txt");
 //        Scanner myReader = new Scanner(myObj);
 //        while (myReader.hasNextLine()) {

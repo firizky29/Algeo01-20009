@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class FrameRegresi extends JFrame implements ActionListener {
     protected int nData=0, nVar=0, nVar2=0, nRegresi=0;
 
+    protected JFrame prevFrame;
+
     protected JPanel panelData;
     protected JPanel panelRegresi;
     protected JPanel panelGuide;
@@ -46,7 +48,8 @@ public class FrameRegresi extends JFrame implements ActionListener {
     protected JTextArea inputPoints = new JTextArea();
 
 
-    public FrameRegresi() {
+    public FrameRegresi(JFrame prevFrame) {
+        this.prevFrame = prevFrame;
         int i,j;
         this.setLayout(new GridBagLayout());
 

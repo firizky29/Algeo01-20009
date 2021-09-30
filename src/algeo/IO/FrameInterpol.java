@@ -14,7 +14,9 @@ import java.util.Scanner;
 
 public class FrameInterpol extends JFrame implements ActionListener {
     protected int nData, nInterpolated=0;
-    
+
+    protected JFrame prevFrame;
+
     protected JPanel panelData;
     protected JPanel panelInter;
     protected JPanel panelGuide;
@@ -44,7 +46,8 @@ public class FrameInterpol extends JFrame implements ActionListener {
     protected JTextArea inputPoints = new JTextArea();
     
     
-    public FrameInterpol() {
+    public FrameInterpol(JFrame prevFrame) {
+        this.prevFrame = prevFrame;
         int i,j;
         this.setLayout(new GridBagLayout());
 
