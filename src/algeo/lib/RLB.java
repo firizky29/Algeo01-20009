@@ -30,7 +30,7 @@ public class RLB {
         this.n = m.nRow();
         this.k = m.nCol() - 1;
         b = new Double[k+1];
-        m = new Matriks(k + 1,k+2);
+        this.m = new Matriks(k + 1,k+2);
         x = new Double[k][n];
         y = new Double[n];
         for(int j=0; j<n; j++){
@@ -79,5 +79,14 @@ public class RLB {
         }
         eq += "e";
         return eq;
+    }
+
+    public double getEstimasi(double[] xe) {
+        double estimasi=0.0;
+        int j;
+        for(j=0;j<k+1;j++) {
+            estimasi += b[j]*(j>0?xe[j-1]:1.0);
+        }
+        return estimasi;
     }
 }

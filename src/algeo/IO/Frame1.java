@@ -119,7 +119,8 @@ public class Frame1 extends JFrame implements ActionListener {
             this.setVisible(false);
             new FrameInterpol();
         } else if(e.getSource()==buttonRegresi) {
-
+            this.setVisible(false);
+            new FrameRegresi();
         } else if(e.getSource()==buttonSplGauss) {
             subFrame.setVisible(false);
             new FrameSplGauss();
