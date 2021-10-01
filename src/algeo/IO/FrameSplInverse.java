@@ -19,7 +19,7 @@ public class FrameSplInverse extends FrameSpl implements ActionListener {
 
     public FrameSplInverse(JFrame J) {
         super(J);
-        this.setTitle("SPL - Metode Eliminasi Gauss");
+        this.setTitle("SPL - Metode Invers");
         open.addActionListener(this);
         save.addActionListener(this);
         create.addActionListener(this);
@@ -108,7 +108,13 @@ public class FrameSplInverse extends FrameSpl implements ActionListener {
                 }
                 SPLInvers spl = new SPLInvers(m);
                 String[] solusi = spl.getSolutionString();
+
                 StringBuilder solusijoined = new StringBuilder();
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                    res.setText(solusijoined.toString());
+                    return;
+                }
                 for(j=0;j<solusi.length;j++) {
                     solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
@@ -126,6 +132,11 @@ public class FrameSplInverse extends FrameSpl implements ActionListener {
                 SPLInvers spl = new SPLInvers(m);
                 String[] solusi = spl.getSolutionString();
                 StringBuilder solusijoined = new StringBuilder();
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                    res.setText(solusijoined.toString());
+                    return;
+                }
                 for(j=0;j<spl.getCoefCol();j++) {
                     solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
@@ -138,6 +149,11 @@ public class FrameSplInverse extends FrameSpl implements ActionListener {
                     SPLInvers m = new SPLInvers(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
                     String[] solusi = m.getSolutionString();
                     StringBuilder solusijoined = new StringBuilder();
+                    if(solusi[0].equals("NaN")) {
+                        solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                        res.setText(solusijoined.toString());
+                        return;
+                    }
                     for(j=0;j<solusi.length;j++) {
                         solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
                     }

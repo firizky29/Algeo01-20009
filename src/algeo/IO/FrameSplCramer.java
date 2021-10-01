@@ -108,6 +108,11 @@ public class FrameSplCramer extends FrameSpl implements ActionListener {
                 SPLCramer spl = new SPLCramer(m);
                 String[] solusi = spl.getSolutionString();
                 StringBuilder solusijoined = new StringBuilder();
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                    res.setText(solusijoined.toString());
+                    return;
+                }
                 for(j=0;j<spl.getCoefCol();j++) {
                     solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
@@ -125,6 +130,11 @@ public class FrameSplCramer extends FrameSpl implements ActionListener {
                 SPLCramer spl = new SPLCramer(m);
                 String[] solusi = spl.getSolutionString();
                 StringBuilder solusijoined = new StringBuilder();
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                    res.setText(solusijoined.toString());
+                    return;
+                }
                 for(j=0;j<solusi.length;j++) {
                     solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
                 }
@@ -137,6 +147,11 @@ public class FrameSplCramer extends FrameSpl implements ActionListener {
                     SPLCramer m = new SPLCramer(new Matriks(fileIn.getSelectedFile().getAbsolutePath()));
                     String[] solusi = m.getSolutionString();
                     StringBuilder solusijoined = new StringBuilder();
+                    if(solusi[0].equals("NaN")) {
+                        solusijoined.append("SPL tidak memiliki solusi/Memiliki solusi banyak");
+                        res.setText(solusijoined.toString());
+                        return;
+                    }
                     for(j=0;j<solusi.length;j++) {
                         solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
                     }
