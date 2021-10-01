@@ -34,8 +34,12 @@ public class Main {
         Matriks m = new Matriks();
         SPLGauss spl = new SPLGauss(m);
         spl.GaussProcess();
-        System.out.println(spl.getSolution().length);
+        spl.M.tulisMatriks2();
         System.out.println(Arrays.toString(spl.getSolution()));
+
+        SPLGauss spl2 = new SPLGauss(m);
+        spl2.JordanProcess();
+        System.out.println(Arrays.toString(spl2.getSolution()));
 
 //        File myObj = new File("test/input/test.txt");
 //        Scanner myReader = new Scanner(myObj);
