@@ -20,7 +20,8 @@ Projek untuk membuat _library_ aljabar linier dalam bahasa Java dan menggunakann
 - Folder doc : berisi laporan
 
 ## Cara Penggunaan Program
-- compile blabla sampe kebuka programnya
+- Pastikan Anda sudah mendownload folder project ini.
+- Navigasi ke Algeo01-20009\bin\artifacts\Algeo01_20009_jar dan jalankan `Algeo01Algeo01-20009.bat` dengan double click.
 - Ketika program dibuka, akan muncul jendela `Menu` sebagai berikut.
 <img width="365" alt="Menu utama" src="https://user-images.githubusercontent.com/64935300/135599497-ddccfdfa-9657-426e-b116-0fab03ddca45.png">
 
