@@ -1,6 +1,6 @@
 package algeo.IO;
 
-import algeo.adt.Matriks;
+import algeo.lib.Matriks;
 import algeo.lib.InverseCofactor;
 
 import javax.swing.*;
@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Formatter;
 import java.util.Scanner;

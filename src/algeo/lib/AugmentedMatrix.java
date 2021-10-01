@@ -1,10 +1,6 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
 
 // disini diisi pemrosesan matriksnya (semacam bikin implementasi .h di c)
 public class AugmentedMatrix extends Matriks {

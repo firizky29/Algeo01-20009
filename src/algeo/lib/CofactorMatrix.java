@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 public class CofactorMatrix extends Matriks{
     public CofactorMatrix(Matriks matriks){
         super(matriks.nRow(), matriks.nCol());

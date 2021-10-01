@@ -1,14 +1,11 @@
 package algeo.driver;
 // disini isi input/output (semacam drivernya mungkin?) matriksnya (determinan dkk, kalau mau bikin class lgi sabi)
-import algeo.adt.Matriks;
+import algeo.lib.Matriks;
 import algeo.lib.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Scanner;
-
+// HANYA KEPERLUAN DEBUGGING
 public class Main {
     public static void main(String[] args) throws IOException {
 //        System.out.println("Wow bisa!");

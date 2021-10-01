@@ -1,6 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
 import java.util.*;
 
 // Regresi Linier Berganda

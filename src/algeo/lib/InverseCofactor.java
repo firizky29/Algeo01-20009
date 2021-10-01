@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 // Mencari invers dari matriks dengan kofaktor
 public class InverseCofactor extends Matriks {
     Matriks res;

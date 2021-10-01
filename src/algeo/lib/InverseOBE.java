@@ -1,9 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
-import javax.swing.*;
-
 public class InverseOBE extends SPLGauss{
     Matriks res;
     public InverseOBE(Matriks m){

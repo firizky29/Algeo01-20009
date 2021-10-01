@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 // Kelas kofaktor, berupa matriks
 public class Cofactor extends Matriks {
     public Cofactor(Matriks matriks, int i, int j){

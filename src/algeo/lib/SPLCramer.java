@@ -1,8 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class SPLCramer extends AugmentedMatrix {

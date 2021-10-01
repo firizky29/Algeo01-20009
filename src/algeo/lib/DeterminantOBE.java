@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 public class DeterminantOBE extends Matriks{
     public Matriks M;
     public DeterminantOBE(Matriks m){

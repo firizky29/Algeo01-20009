@@ -1,6 +1,6 @@
 package algeo.IO;
 
-import algeo.adt.Matriks;
+import algeo.lib.Matriks;
 import algeo.lib.interpolasiPolinom;
 
 import javax.swing.*;

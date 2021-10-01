@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 public class interpolasiPolinom {
     private Matriks points;
     private Double[] coefPolinom;

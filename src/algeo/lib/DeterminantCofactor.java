@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 // mencari determinan dengan kofaktor
 public class DeterminantCofactor extends Matriks {
     public Matriks M;

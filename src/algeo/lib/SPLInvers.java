@@ -1,7 +1,5 @@
 package algeo.lib;
 
-import algeo.adt.Matriks;
-
 import java.util.Arrays;
 
 public class SPLInvers extends AugmentedMatrix {

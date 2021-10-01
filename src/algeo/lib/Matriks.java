@@ -1,4 +1,4 @@
-package algeo.adt;
+package algeo.lib;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -8,8 +8,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Scanner;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // disini tulis adt matriksnya ya guys
@@ -125,7 +123,7 @@ public class Matriks {
     }
 
     //operator primitif
-    private final static Double epsilon = 1e-9;
+    private final static Double epsilon = 1e-140;
     public static boolean Eq(double A, double B){
         return Math.abs(A-B)<epsilon;
     }
