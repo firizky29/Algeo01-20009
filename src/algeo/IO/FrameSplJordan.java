@@ -109,8 +109,12 @@ public class FrameSplJordan extends FrameSpl implements ActionListener {
                 spl.JordanProcess();
                 String[] solusi = spl.getSolution();
                 StringBuilder solusijoined = new StringBuilder();
-                for(j=0;j<solusi.length;j++) {
-                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi");
+                } else {
+                    for(j=0;j<solusi.length;j++) {
+                        solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                    }
                 }
                 res.setText(solusijoined.toString());
             } else if(nrow>maxSize || ncol>maxSize) {
@@ -127,8 +131,12 @@ public class FrameSplJordan extends FrameSpl implements ActionListener {
                 spl.JordanProcess();
                 String[] solusi = spl.getSolution();
                 StringBuilder solusijoined = new StringBuilder();
-                for(j=0;j<solusi.length;j++) {
-                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi");
+                } else {
+                    for(j=0;j<solusi.length;j++) {
+                        solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                    }
                 }
                 res.setText(solusijoined.toString());
             }
@@ -140,8 +148,12 @@ public class FrameSplJordan extends FrameSpl implements ActionListener {
                     m.JordanProcess();
                     String[] solusi = m.getSolution();
                     StringBuilder solusijoined = new StringBuilder();
-                    for(j=0;j<solusi.length;j++) {
-                        solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
+                    if(solusi[0].equals("NaN")) {
+                        solusijoined.append("SPL tidak memiliki solusi");
+                    } else {
+                        for(j=0;j<solusi.length;j++) {
+                            solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                        }
                     }
                     res.setText(solusijoined.toString());
                 } catch (IOException ex) {

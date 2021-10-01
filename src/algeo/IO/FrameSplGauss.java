@@ -52,7 +52,7 @@ public class FrameSplGauss extends FrameSpl implements ActionListener {
         } else if(e.getSource()==create) {
             int i,j;
             gridSpl.removeAll();
-            ncol = Integer.parseInt(col.getText())+1;
+            ncol = Integer.parseInt(col.getText());
             nrow = Integer.parseInt(row.getText());
             if(ncol>0 && ncol<=maxSize && nrow>0 && nrow<=maxSize) {
                 gridSpl.setLayout(new GridLayout(nrow,2*ncol-1,0,2));
@@ -108,8 +108,12 @@ public class FrameSplGauss extends FrameSpl implements ActionListener {
                 spl.GaussProcess();
                 String[] solusi = spl.getSolution();
                 StringBuilder solusijoined = new StringBuilder();
-                for(j=0;j<solusi.length;j++) {
-                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi");
+                } else {
+                    for(j=0;j<solusi.length;j++) {
+                        solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                    }
                 }
                 res.setText(solusijoined.toString());
             } else if(nrow>maxSize || ncol>maxSize) {
@@ -126,8 +130,12 @@ public class FrameSplGauss extends FrameSpl implements ActionListener {
                 spl.GaussProcess();
                 String[] solusi = spl.getSolution();
                 StringBuilder solusijoined = new StringBuilder();
-                for(j=0;j<solusi.length;j++) {
-                    solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                if(solusi[0].equals("NaN")) {
+                    solusijoined.append("SPL tidak memiliki solusi");
+                } else {
+                    for(j=0;j<solusi.length;j++) {
+                        solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                    }
                 }
                 res.setText(solusijoined.toString());
             }
@@ -139,8 +147,12 @@ public class FrameSplGauss extends FrameSpl implements ActionListener {
                     m.GaussProcess();
                     String[] solusi = m.getSolution();
                     StringBuilder solusijoined = new StringBuilder();
-                    for(j=0;j<solusi.length;j++) {
-                        solusijoined.append("x" +(j+1)+"= "+solusi[j]+"\n");
+                    if(solusi[0].equals("NaN")) {
+                        solusijoined.append("SPL tidak memiliki solusi");
+                    } else {
+                        for(j=0;j<solusi.length;j++) {
+                            solusijoined.append("x"+(j+1)+"= "+solusi[j]+"\n");
+                        }
                     }
                     res.setText(solusijoined.toString());
                 } catch (IOException ex) {
