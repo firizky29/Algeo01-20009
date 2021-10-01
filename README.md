@@ -29,15 +29,15 @@ Projek untuk membuat _library_ aljabar linier dalam bahasa Java dan menggunakann
 <img width="365" alt="Submenu" src="https://user-images.githubusercontent.com/64935300/135599535-b584ec64-4488-409c-972b-80bd8d8efad6.png">
 
 - Antarmuka untuk persoalan `Sistem Persamaan Linier` adalah sebagai berikut.
-  * Kotak dialog Banyak Baris akan diisi banyak baris pada matriks augmented
-  * Kotak dialog Banyak Kolom akan diisi banyak kolom pada matriks augmented
-  * Tombol Create digunakan untuk membuat matriks berukuran baris dan kolom sesuai input yang komponennya 0 semua. Matriks dapat diinput jika baris dan kolom sudah sesuai dan tombol create sudah dklik.
-  * Tombol Calculate di atas digunakan untuk mencari solusi dari matriks augmented yang sudah diinput
-  * Tombol Home digunakan untuk kembali ke menu utama
-  * Tombol Reset digunakan untuk mereset matriks yang akan diinput menjadi matriks nol
-  * Tombol Open digunakan untuk membuka file berisi matriks augmented
-  * Tombol Calculate di bawah digunakan untuk mencari solusi dari matriks augmented pada file yang telah diinput
-  * Tombol Save di bawah digunakan untuk menyimpan solusi dalam file txt
+  * Kotak dialog `Banyak Baris` akan diisi banyak baris pada matriks augmented
+  * Kotak dialog `Banyak Kolom` akan diisi banyak kolom pada matriks augmented
+  * Tombol `Create` digunakan untuk membuat matriks berukuran baris dan kolom sesuai input yang komponennya 0 semua. Matriks dapat diinput jika baris dan kolom sudah sesuai dan tombol create sudah dklik.
+  * Tombol `Calculate` di atas digunakan untuk mencari solusi dari matriks augmented yang sudah diinput
+  * Tombol `Home` digunakan untuk kembali ke menu utama
+  * Tombol `Reset` digunakan untuk mereset matriks yang akan diinput menjadi matriks nol
+  * Tombol `Open` digunakan untuk membuka file berisi matriks augmented
+  * Tombol `Calculate` di bawah digunakan untuk mencari solusi dari matriks augmented pada file yang telah diinput
+  * Tombol `Save` di bawah digunakan untuk menyimpan solusi dalam file txt
 <img width="955" alt="Antarmuka Sistem Persamaan Linier" src="https://user-images.githubusercontent.com/64935300/135599078-946b7a03-5d6d-414f-9d8a-b031a725badb.png">
 
 - Antarmuka untuk persoalan `Determinan` dan `Invers Matriks` juga mirip dengan `Sistem Persamaan Linier`. Persoalan `Determinan` dan `Invers Matriks` memiliki 2 metode yang dapat dipilih, yaitu `Metode Reduksi Baris` dan `Metode Ekspansi Kofaktor`.
