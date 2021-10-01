@@ -22,8 +22,12 @@ Projek untuk membuat _library_ aljabar linier dalam bahasa Java dan menggunakann
 ## Cara Penggunaan Program
 - compile blabla sampe kebuka programnya
 - Ketika program dibuka, akan muncul jendela `Menu` sebagai berikut.
+<img width="365" alt="Menu utama" src="https://user-images.githubusercontent.com/64935300/135599497-ddccfdfa-9657-426e-b116-0fab03ddca45.png">
+
 - Anda dapat memilih satu dari lima persoalan yang dapat diselesaikan. Perlu diketahui bahwa Anda dapat memilih persoalan lain jika Anda memilih `Sistem Persamaan Linier`, `Determinan`, atau `Invers Matriks`. Sedangkan jika anda memilih `Interpolasi Polinom` atau `Regresi Linier` anda perlu membuka program lagi untuk memilih persoalan lain.
 - Pada submenu `Sistem Persamaan Linier` terdapat 4 pilihan metode sebagai berikut dan ada tombol `Kembali` untuk kembali ke menu utama. Perlu diketahui bahwa `Metode Matriks Balikan` dan `Metode Cramer` tidak mengeluarkan output untuk Sistem Persamaan Linier yang tidak memiliki solusi atau memiliki solusi banyak.
+<img width="365" alt="Submenu" src="https://user-images.githubusercontent.com/64935300/135599535-b584ec64-4488-409c-972b-80bd8d8efad6.png">
+
 - Antarmuka untuk persoalan `Sistem Persamaan Linier` adalah sebagai berikut.
   * Kotak dialog Banyak Baris akan diisi banyak baris pada matriks augmented
   * Kotak dialog Banyak Kolom akan diisi banyak kolom pada matriks augmented
@@ -34,6 +38,10 @@ Projek untuk membuat _library_ aljabar linier dalam bahasa Java dan menggunakann
   * Tombol Open digunakan untuk membuka file berisi matriks augmented
   * Tombol Calculate di bawah digunakan untuk mencari solusi dari matriks augmented pada file yang telah diinput
   * Tombol Save di bawah digunakan untuk menyimpan solusi dalam file txt
+<img width="955" alt="Antarmuka Sistem Persamaan Linier" src="https://user-images.githubusercontent.com/64935300/135599078-946b7a03-5d6d-414f-9d8a-b031a725badb.png">
+
 - Antarmuka untuk persoalan `Determinan` dan `Invers Matriks` juga mirip dengan `Sistem Persamaan Linier`. Persoalan `Determinan` dan `Invers Matriks` memiliki 2 metode yang dapat dipilih, yaitu `Metode Reduksi Baris` dan `Metode Ekspansi Kofaktor`.
 - Antarmuka `Interpolasi Polinom` dan `Regresi Linier` adalah sebagai berikut. Terdapat tambahan kotak persamaan polinom/regresi dan panel untuk mencari nilai yang ingin diestimasi. Untuk persamaan dan nilai estimasi dicari dengan tombol `Calculate`.
+<img width="815" alt="Antarmuka Regresi Linier Berganda" src="https://user-images.githubusercontent.com/64935300/135599644-f5946d2d-eeb5-41f6-8bc4-6513510e3a22.png">
+
 - Perlu dipastikan bahwa setiap masukan dari GUI sudah dengan menekan tombol `Create` dan `Calculate`. 
