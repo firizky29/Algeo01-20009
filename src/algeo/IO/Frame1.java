@@ -21,7 +21,7 @@ public class Frame1 extends JFrame implements ActionListener {
     private JFrame InvCofactor =  new JFrame();
     private JFrame Interpol = new JFrame();
     private JFrame Regresi = new JFrame();
-    private JFrame subFrame = new JFrame();
+    private JFrame[] subFrame = new JFrame[3];
 
 
     private JButton buttonSpl;
@@ -38,8 +38,11 @@ public class Frame1 extends JFrame implements ActionListener {
     private JButton buttonDetCofactor;
     private JButton buttonInvOBE;
     private JButton buttonInvCofactor;
-    private JButton buttonBack;
+    private JButton[] buttonBack = new JButton[3];
     private JPanel mainPanel;
+    // enumerasi subframe
+    // 0: subframe SPL, 1: subframe Det, 2: subframe inv
+    private int enumSubframe;
 
     public final Image icon = Toolkit.getDefaultToolkit().getImage("src/algeo/resource/favicon.png");
     public final Font Bold = new Font("Gill Sans", Font.BOLD, 24);
@@ -73,7 +76,8 @@ public class Frame1 extends JFrame implements ActionListener {
 
 
     public Frame1() throws IOException {
-
+        //init subframe
+        enumSubframe = -1;
         this.setIconImage(icon);
         buttonSpl = new JButton("Sistem Persamaan Linier");
         CreateButton(buttonSpl);
@@ -122,88 +126,91 @@ public class Frame1 extends JFrame implements ActionListener {
         this.setBackground(GrandColor);
 
         this.setVisible(true);
+        for(int l=0; l<3; l++) {
+            subFrame[l] = new JFrame();
+            subFrame[l].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            subFrame[l].setSize(500, 500);
+            subFrame[l].setIconImage(icon);
+        }
 
-        subFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        subFrame.setSize(500,500);
-        subFrame.setIconImage(icon);
+        subFrame[0].setTitle("SPL");
+        subFrame[0].setLayout(new GridLayout(5, 1, 10, 10));
+        subFrame[0].setBackground(GrandColor);
+        buttonSplGauss = new JButton("Metode Eliminasi Gauss");
+        buttonSplJordan = new JButton("Metode Eliminasi Gauss-Jordan");
+        buttonSplInvers = new JButton("Metode Matriks Balikan");
+        buttonSplCramer = new JButton("Metode Cramer");
+
+        for(int l=0; l<3; l++){
+            buttonBack[l] = new JButton("Kembali");
+            CreateButton(buttonBack[l]);
+            buttonBack[l].addActionListener(this);
+        }
+        CreateButton(buttonSplJordan);
+        CreateButton(buttonSplInvers);
+        CreateButton(buttonSplCramer);
+        CreateButton(buttonSplGauss);
+        buttonSplGauss.addActionListener(this);
+        buttonSplJordan.addActionListener(this);
+        buttonSplInvers.addActionListener(this);
+        buttonSplCramer.addActionListener(this);
+        // Tambahin panel informasi batasan metode invers dan cramer
+        subFrame[0].add(buttonSplGauss);
+        subFrame[0].add(buttonSplJordan);
+        subFrame[0].add(buttonSplInvers);
+        subFrame[0].add(buttonSplCramer);
+        subFrame[0].add(buttonBack[0]);
+
+
+        subFrame[1].setTitle("Determinan");
+        subFrame[1].setLayout(new GridLayout(3,1,10,10));
+        subFrame[1].setBackground(GrandColor);
+        buttonDetOBE = new JButton("Metode Reduksi Baris");
+        buttonDetCofactor = new JButton("Metode Ekspansi Kofaktor");
+        CreateButton(buttonDetOBE);
+        CreateButton(buttonDetCofactor);
+        buttonDetOBE.addActionListener(this);
+        buttonDetCofactor.addActionListener(this);
+
+        subFrame[1].add(buttonDetOBE);
+        subFrame[1].add(buttonDetCofactor);
+        subFrame[1].add(buttonBack[1]);
+
+        subFrame[2].setTitle("Matriks Balikan");
+        subFrame[2].setLayout(new GridLayout(3,1,10,10));
+        subFrame[2].setBackground(GrandColor);
+        buttonInvOBE = new JButton("Metode Reduksi Baris");
+        buttonInvCofactor = new JButton("Metode Ekspansi Kofaktor");
+        CreateButton(buttonInvOBE);
+        CreateButton(buttonInvCofactor);
+        buttonInvOBE.addActionListener(this);
+        buttonInvCofactor.addActionListener(this);
+
+        subFrame[2].add(buttonInvOBE);
+        subFrame[2].add(buttonInvCofactor);
+        subFrame[2].add(buttonBack[2]);
+
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==buttonSpl) {
-            if(!subFrame.isDisplayable()) {
-                subFrame.setTitle("SPL");
-                subFrame.setLayout(new GridLayout(5, 1, 10, 10));
-                subFrame.setBackground(GrandColor);
-                buttonSplGauss = new JButton("Metode Eliminasi Gauss");
-                buttonSplJordan = new JButton("Metode Eliminasi Gauss-Jordan");
-                buttonSplInvers = new JButton("Metode Matriks Balikan");
-                buttonSplCramer = new JButton("Metode Cramer");
-                buttonBack = new JButton("Kembali");
-                CreateButton(buttonSplJordan);
-                CreateButton(buttonSplInvers);
-                CreateButton(buttonSplCramer);
-                CreateButton(buttonBack);
-                CreateButton(buttonSplGauss);
-                buttonSplGauss.addActionListener(this);
-                buttonSplJordan.addActionListener(this);
-                buttonSplInvers.addActionListener(this);
-                buttonSplCramer.addActionListener(this);
-                buttonBack.addActionListener(this);
-                // Tambahin panel informasi batasan metode invers dan cramer
-                subFrame.add(buttonSplGauss);
-                subFrame.add(buttonSplJordan);
-                subFrame.add(buttonSplInvers);
-                subFrame.add(buttonSplCramer);
-                subFrame.add(buttonBack);
-            }
-
             this.setVisible(false);
-            subFrame.setVisible(true);
+            subFrame[0].setVisible(true);
+            enumSubframe = 0;
+//            subFrame.setVisible(true);
         } else if(e.getSource()==buttonDet) {
-            if(!subFrame.isDisplayable()){
-                subFrame.setTitle("Determinan");
-                subFrame.setLayout(new GridLayout(3,1,10,10));
-                subFrame.setBackground(GrandColor);
-                buttonDetOBE = new JButton("Metode Reduksi Baris");
-                buttonDetCofactor = new JButton("Metode Ekspansi Kofaktor");
-                buttonBack = new JButton("Kembali");
-                buttonDetOBE.setFocusable(false);
-                buttonDetCofactor.setFocusable(false);
-                buttonBack.setFocusable(false);
-                buttonDetOBE.addActionListener(this);
-                buttonDetCofactor.addActionListener(this);
-                buttonBack.addActionListener(this);
-
-                subFrame.add(buttonDetOBE);
-                subFrame.add(buttonDetCofactor);
-                subFrame.add(buttonBack);
-            }
-
             this.setVisible(false);
-            subFrame.setVisible(true);
+            subFrame[1].setVisible(true);
+            enumSubframe = 1;
+            //subFrame.setVisible(true);
         } else if(e.getSource()==buttonInv) {
-            if(!subFrame.isDisplayable()){
-                subFrame.setTitle("Matriks Balikan");
-                subFrame.setLayout(new GridLayout(3,1,10,10));
-                subFrame.setBackground(GrandColor);
-                buttonInvOBE = new JButton("Metode Reduksi Baris");
-                buttonInvCofactor = new JButton("Metode Ekspansi Kofaktor");
-                buttonBack = new JButton("Kembali");
-                buttonInvOBE.setFocusable(false);
-                buttonInvCofactor.setFocusable(false);
-                buttonBack.setFocusable(false);
-                buttonInvOBE.addActionListener(this);
-                buttonInvCofactor.addActionListener(this);
-                buttonBack.addActionListener(this);
-
-                subFrame.add(buttonInvOBE);
-                subFrame.add(buttonInvCofactor);
-                subFrame.add(buttonBack);
-            }
-
             this.setVisible(false);
-            subFrame.setVisible(true);
+            subFrame[2].setVisible(true);
+            enumSubframe = 2;
+
+            //[enumSubframesubFrame.setVisible(true);
         } else if(e.getSource()==buttonInterpol) {
             this.setVisible(false);
             if(!Interpol.isDisplayable()) Interpol = new FrameInterpol(this);
@@ -213,39 +220,45 @@ public class Frame1 extends JFrame implements ActionListener {
             if(!Regresi.isDisplayable()) Regresi = new FrameRegresi(this);
             else Regresi.setVisible(true);
         } else if(e.getSource()==buttonSplGauss) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!SPLGauss.isDisplayable()) SPLGauss = new FrameSplGauss(this);
             else SPLGauss.setVisible(true);
         } else if(e.getSource()==buttonSplJordan) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!SPLJordan.isDisplayable()) SPLJordan = new FrameSplJordan(this);
             else SPLJordan.setVisible(true);
         } else if(e.getSource()==buttonSplInvers) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!SPLInvers.isDisplayable()) SPLInvers = new FrameSplInverse(this);
             else SPLInvers.setVisible(true);
         } else if(e.getSource()==buttonSplCramer) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!SPLCramer.isDisplayable()) SPLCramer = new FrameSplCramer(this);
             else SPLCramer.setVisible(true);
         } else if(e.getSource()==buttonDetOBE) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!DetOBE.isDisplayable()) DetOBE = new FrameDetOBE(this);
             else DetOBE.setVisible(true);
         } else if(e.getSource()==buttonDetCofactor) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!DetCofactor.isDisplayable()) DetCofactor = new FrameDetKofaktor(this);
             else DetCofactor.setVisible(true);
         } else if(e.getSource()==buttonInvOBE) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!InvOBE.isDisplayable()) InvOBE = new FrameInvOBE(this);
             else InvOBE.setVisible(true);
         } else if(e.getSource()==buttonInvCofactor) {
-            subFrame.setVisible(false);
+            subFrame[enumSubframe].setVisible(false);
             if(!InvCofactor.isDisplayable()) InvCofactor = new FrameInvKofaktor(this);
             else InvCofactor.setVisible(true);
-        } else if(e.getSource() == buttonBack){
-            subFrame.setVisible(false);
+        } else if(e.getSource() == buttonBack[0]){
+            subFrame[0].setVisible(false);
+            this.setVisible(true);
+        } else if(e.getSource() == buttonBack[1]){
+            subFrame[1].setVisible(false);
+            this.setVisible(true);
+        } else if(e.getSource() == buttonBack[2]){
+            subFrame[2].setVisible(false);
             this.setVisible(true);
         }
     }
