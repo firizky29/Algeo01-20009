@@ -43,8 +43,8 @@ public class Frame1 extends JFrame implements ActionListener {
     // enumerasi subframe
     // 0: subframe SPL, 1: subframe Det, 2: subframe inv
     private int enumSubframe;
-
-    public final Image icon = Toolkit.getDefaultToolkit().getImage("src/algeo/resource/favicon.png");
+    //public final Image icon = ImageIO.read(new File("C:/Users/Firizky Ardiansyah/Documents/GitHub/Algeo01-20009/src/algeo/resource/pavicon.png"));
+    //public final Image icon = Toolkit.getDefaultToolkit().getImage("src/algeo/resource/favicon.png");
     public final Font Bold = new Font("Gill Sans", Font.BOLD, 24);
     public final Font Plain = new Font("Gill Sans", Font.PLAIN, 24);
     public final Color GrandColor = Color.decode("#06061B");
@@ -78,7 +78,7 @@ public class Frame1 extends JFrame implements ActionListener {
     public Frame1() throws IOException {
         //init subframe
         enumSubframe = -1;
-        this.setIconImage(icon);
+        //this.setIconImage(icon);
         buttonSpl = new JButton("Sistem Persamaan Linier");
         CreateButton(buttonSpl);
         buttonDet = new JButton("Determinan");
@@ -100,14 +100,14 @@ public class Frame1 extends JFrame implements ActionListener {
         mainPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints cc = new GridBagConstraints();
-        BufferedImage myPicture = ImageIO.read(new File("src/algeo/resource/logokecil.png"));
-        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-        picLabel.setPreferredSize(new Dimension(60, 60));
+        //BufferedImage myPicture = ImageIO.read(new File("C:/Users/Firizky Ardiansyah/Documents/GitHub/Algeo01-20009/src/algeo/resource/logokecil.png"));
+        //JLabel picLabel = new JLabel();
+        //picLabel.setPreferredSize(new Dimension(60, 60));
         cc.gridx = 0;
         cc.gridy = 0;
         JLabel Judul = new JLabel("ALJABAR LINEAR KALKULATOR");
         CreateLabel(Judul);
-        mainPanel.add(picLabel);
+        //mainPanel.add(picLabel);
         mainPanel.add(Judul);
 
 
@@ -130,7 +130,7 @@ public class Frame1 extends JFrame implements ActionListener {
             subFrame[l] = new JFrame();
             subFrame[l].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             subFrame[l].setSize(500, 500);
-            subFrame[l].setIconImage(icon);
+            //subFrame[l].setIconImage(icon);
         }
 
         subFrame[0].setTitle("SPL");
